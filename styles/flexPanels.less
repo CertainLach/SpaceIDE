@@ -1,0 +1,35 @@
+.main{
+  display: flex;
+  background: red;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: calc(~"100vh - 33px");
+  justify-content: space-around;
+}
+.row{
+  display: flex;
+  flex-wrap: nowrap;
+  background: green;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+.rowElem{
+  resize: horizontal;
+  flex-grow: 1;
+}
+.column{
+  display: flex;
+  flex-wrap: nowrap;
+  background: yellow;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+.columnElem{
+  resize: vertical;
+  flex-grow: 1;
+}
+.panel{
+  flex-grow: 1;
+}

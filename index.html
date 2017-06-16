@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!-- This file is NOT used in production build, it is only for use with webpack-dev-server -->
+<html>
+    <head>
+        <base href="/">
+        <script>
+            console.log('Stubbing "server" app state');
+            window.__SERVER_STORE__ = {
+                stubbedState: true
+            };
+        </script>
+        <title>Error?</title>
+    </head>
+    <body>
+        <div id="App">Empty? Check console.</div>
+    </body>
+</html>
