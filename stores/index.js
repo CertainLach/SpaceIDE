@@ -1,6 +1,7 @@
 // Import
 import AppStore from './AppStore';
 import BottomStore from './BottomStore';
+import NotificationStore from './NotificationStore';
 import {toJS} from 'mobx';
 
 // Real store
@@ -8,7 +9,8 @@ export function createStore() {
     // This stores will be provided to all components
     return ({
         app: new AppStore(),
-        bottom: new BottomStore()
+        bottom: new BottomStore(),
+        notification: new NotificationStore()
     });
 }
 

@@ -16,6 +16,7 @@ import{
     observer
 } from 'mobx-react';
 import ProjectPanelLayout from "../components/project/panels/ProjectPanelLayout";
+import NotificationList from '../components/project/notifications/NotificationList';
 
 const FileBrowserMenuItem = props=><div onClick={props.onClick} className={fileBrowserMenuItem}>
     {props.title}
@@ -27,24 +28,9 @@ export default class Home extends Component {
     componentWillMount(){
         this.props.app.setPage('Главная');
     }
-    state={
-        opened:false,
-    };
-    toggleFileBrowser(){
-        this.setState({
-            opened:!this.state.opened
-        })
-    }
-    onFileContextMenu(e){
-        this.setState({
-            menuType:selectedFileMenu
-        });
-        e.preventDefault();
-        return false;
-    }
     render() {
-        console.log(this.props.bottom);
         return <div style={{height:'100%',width:'100%'}}>
+            <NotificationList/>
             <ProjectPanelLayout/>
             <div className={bottom}>
                 <FileBrowser/>

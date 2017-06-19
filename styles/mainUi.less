@@ -370,23 +370,24 @@ button:focus) {
   /*display: none;*/
   position: absolute;
   right: 15px;
-  top: 45px;
+  //top: 45px;
+  top: 15px*2;
   width: 200px;
   overflow: visible;
   z-index: 9;
-}
-
-.notificationItem {
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  font-size: 11px;
-  padding: 10px;
-  border-top: 1px solid #fff;
-  margin-bottom: 4px;
-}
-
-.notificationItem span {
-  color: rgba(255, 255, 255, 0.50);
+  .notificationItem {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 11px;
+    padding: 10px;
+    border-top: 1px solid #fff;
+    margin-bottom: 4px;
+    transition: all 1s;
+    span {
+      color: rgba(255, 255, 255, 0.50);
+      padding-right: 20px;
+    }
+  }
 }
 
 #whoIAm {
