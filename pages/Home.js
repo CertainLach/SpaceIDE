@@ -16,7 +16,8 @@ import{
     observer
 } from 'mobx-react';
 import ProjectPanelLayout from "../components/project/panels/ProjectPanelLayout";
-import NotificationList from '../components/project/notifications/NotificationList';
+import NotificationList from '../components/project/notifications/notificationList/NotificationList';
+import NotificationLog from '../components/project/notifications/notificationLog/NotificationLog';
 
 const FileBrowserMenuItem = props=><div onClick={props.onClick} className={fileBrowserMenuItem}>
     {props.title}
@@ -31,6 +32,7 @@ export default class Home extends Component {
     render() {
         return <div style={{height:'100%',width:'100%'}}>
             <NotificationList/>
+            <NotificationLog/>
             <ProjectPanelLayout/>
             <div className={bottom}>
                 <FileBrowser/>

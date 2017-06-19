@@ -33,3 +33,9 @@ Roadmap:
  - Create Potato.Socket component for React
  - Finish styles
     - Rewrite to less
+ - Notifications
+    - Notification log
+    - Notification types
+ - Project
+    - Add project-level top menu
+ - Fix mobx-dev-tool (Two last buttons)
