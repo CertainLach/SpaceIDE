@@ -20,9 +20,9 @@ function cSC(importPromise) {
                 Component=Component.default||Component;
                 CodeSplitComponent.Component = Component
                 this.setState({Component})
-            }
+            };
             if (!this.state.Component) {
-                const Component;
+                //const Component;
                 // Because in node System.import === require (see webpack.config)
                 //if(__BROWSER__)
                     importPromise.then(onDone);
@@ -52,6 +52,7 @@ class App extends Component{
             <CurrentRouter {...routerParams}>
                 <Switch>
                     <Route exact path="/" component={cSC(System.import('../pages/Home'))}/>
+                    <Route exact path="/chat" component={cSC(System.import('../pages/StandaloneChat'))}/>
                     <Route path="*" component={cSC(System.import('../pages/NotFound'))}/>
                 </Switch>
             </CurrentRouter>

@@ -66,6 +66,37 @@ button:focus) {
 @file-browser-menu-height: 30px;
 
 .bottom {
+  height: @bottom-height;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  &.chatBottom{
+    display: flex;
+    //box-sizing: border-box;
+    .chatBottomItem{
+      flex-grow: 1;
+      //background: red;
+      height: @bottom-height;
+      border-left: #222 1px solid;
+      &:nth-child(1) {
+        border-left: none;
+      }
+      display: flex;
+      @circle-radius: @bottom-height/15;
+      &:nth-child(odd) {
+        .circle {
+          background: #434544;
+        }
+      }
+      .circle {
+        margin: auto;
+        width: @circle-radius*2;
+        height: @circle-radius*2;
+        border-radius: @circle-radius;
+        background: #1298a1;
+      }
+    }
+  }
   #fileBrowser {
     position: absolute;
     bottom: -@file-browser-height+@bottom-height+1px;
@@ -393,6 +424,74 @@ button:focus) {
     span {
       color: rgba(255, 255, 255, 0.50);
       padding-right: @notification-item-author-interval;
+    }
+  }
+}
+
+.chat{
+  width: 100%;
+  height: 100%;
+  @message-padding: @bottom-height/6;
+  @chat-photo-size: @bottom-height/3*2;
+  .chatMessageList {
+    // It is not a black (a bit)
+    overflow: scroll;
+    background: #040009;
+    //background: red;
+    //display: flex;
+    // 6 there - is a magic number. :D
+    height: calc(~"6px + 100vh" - @bottom-height * 2);
+    .chatMessage{
+      position: relative;
+      border-top: #222 1px dotted;
+      &:nth-child(1){
+        border-top: none;
+      }
+      img {
+        display: inline-block;
+        width: @chat-photo-size;
+        height: @chat-photo-size;
+      }
+      .content {
+        //padding-left: @message-padding;
+        display: inline-block;
+        color: white;
+        span{
+          position: absolute;
+          font-size: @chat-photo-size/3;
+          top: @message-padding/2;
+          left: @message-padding*2+@chat-photo-size;
+          //margin-top: -4px;
+          color: #444;
+        }
+        p{
+          padding-left: @message-padding;//+@chat-photo-size;
+          display: inline-block;
+          vertical-align: top;
+          padding-top: 0px;
+          margin:0px;
+          color: white;
+          font-size: @chat-photo-size/3;
+        }
+      }
+      padding: @message-padding;
+      //background: red;
+    }
+  }
+  .chatInput {
+    position: absolute;
+    border: white 1px solid;
+    background: black;
+    color: white;
+    font-size: @bottom-height/3;
+    padding-left: @bottom-height/3;
+    bottom: @bottom-height;
+    height: @bottom-height;
+    width: 100%;
+    //box-sizing: border-box;
+    box-sizing: border-box;
+    &:focus{
+      outline: none;
     }
   }
 }

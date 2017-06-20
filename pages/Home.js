@@ -18,12 +18,13 @@ import{
 import ProjectPanelLayout from "../components/project/panels/ProjectPanelLayout";
 import NotificationList from '../components/project/notifications/notificationList/NotificationList';
 import NotificationLog from '../components/project/notifications/notificationLog/NotificationLog';
+import ProjectBottomPanel from "../components/project/bottom/ProjectBottomPanel";
 
 const FileBrowserMenuItem = props=><div onClick={props.onClick} className={fileBrowserMenuItem}>
     {props.title}
 </div>;
 
-@inject('app','bottom')
+@inject('app')
 @observer
 export default class Home extends Component {
     componentWillMount(){
@@ -34,26 +35,7 @@ export default class Home extends Component {
             <NotificationList/>
             <NotificationLog/>
             <ProjectPanelLayout/>
-            <div className={bottom}>
-                <FileBrowser/>
-                <div id={bottomPanel}>
-                    {/*To left*/}
-                    <div id={bottomLeft}>
-                        <div id={filebrowserButton} onClick={this.props.bottom.toggleFileBrowser}/>
-                        <div id={fileHistory}>
-                            <div className={fileHistoryItem}>None</div>
-                            <div className={fileHistoryItem}>None</div>
-                            <div className={fileHistoryItem}>None</div>
-                            <div className={fileHistoryItem}>None</div>
-                        </div>
-                    </div>
-                    {/*To right*/}
-                    <div id={bottomLaunchButtons}>
-                        <div id={commitButton}>COMMIT</div>
-                        <div id={launchButton}>DEPLOY</div>
-                    </div>
-                </div>
-            </div>
+            <ProjectBottomPanel/>
         </div>
     }
 }
