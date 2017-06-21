@@ -12,13 +12,14 @@
   height: 100%;
 }
 
+// TODO: Make scrollbar work in every browser
+// TODO: (Not only webkit based)
 :global(::-webkit-scrollbar) {
   height: 6px;
   width: 6px;
 }
 
-:global(::-webkit-scrollbar-button:start:decrement,
-::-webkit-scrollbar-button:end:increment) {
+:global(::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment) {
   height: 0;
   display: block;
   background-color: transparent;
@@ -42,10 +43,8 @@
   height: 100%;
 }
 
-:global(input:focus,
-select:focus,
-textarea:focus,
-button:focus) {
+// Get rid of outline (it looks ugly)
+:global(input:focus, select:focus, textarea:focus, button:focus) {
   outline: none;
 }
 
@@ -83,7 +82,6 @@ button:focus) {
     transition: all .4s ease-in;
     &.open {
       bottom: @bottom-height;
-      //visibility: visible;
     }
   }
   #chatHelp {
@@ -94,7 +92,6 @@ button:focus) {
 
     #fileBrowserMenu {
       height: @file-browser-menu-height;
-      //padding: @file-browser-menu-height/6;
       display: flex;
       vertical-align: middle;
 
@@ -106,22 +103,16 @@ button:focus) {
       }
       .fileBrowserMenuItem {
         display: inline-block;
-        //vertical-align: top;
         font-size: @file-browser-menu-height/3;
         // TODO: Recalculate margin/padding based on @file-browser-menu-height
         margin-left: 5px;
         margin-top: 5px;
-        padding: 6px;
-        padding-top: 4px;
-        padding-bottom: 3px;
+        padding: 4px 6px 3px;
         cursor: pointer;
         position: relative;
-        //height: auto;
-        //position: relativeheight: @file-browser-menu-height/3*2;
         border: 1px solid rgba(0, 0, 0, 0);
         &:hover {
           border: 1px solid rgba(0, 0, 0, 0.80);
-          //background: rgba(255, 255, 255, 1);
         }
       }
     }
@@ -345,7 +336,7 @@ button:focus) {
   .topMenu {
     display: block;
     position: absolute;
-    right: 0px;
+    right: 0;
     top: 0;
     width: 300px;
     text-align: right;
@@ -448,7 +439,6 @@ button:focus) {
 }
 
 .chat{
-  //width: 100%;
   height: calc(~"100vh" - @ide-topbar-height);
   width: 100%;
   position: relative;
@@ -456,8 +446,6 @@ button:focus) {
   @chat-photo-size: @bottom-height/3*2;
   bottom:0;
   top: 0;
-  //display: flex;
-  //flex-direction: column;
   .chatContents {
     position: relative;
     width: 100%;
@@ -469,9 +457,6 @@ button:focus) {
       width: 100%;
       overflow: visible;
       overflow-y: scroll;
-      //background: red;
-      //display: flex;
-      // 4px there - is a magic number. :D
       height: calc(~"100%" - @bottom-height * 2);
       .chatMessage {
         position: relative;
@@ -485,7 +470,6 @@ button:focus) {
           height: @chat-photo-size;
         }
         .content {
-          //padding-left: @message-padding;
           display: inline-block;
           color: white;
           span {
@@ -493,21 +477,19 @@ button:focus) {
             font-size: @chat-photo-size/3;
             top: @message-padding/2;
             left: @message-padding*2+@chat-photo-size;
-            //margin-top: -4px;
             color: #444;
           }
           p {
-            padding-left: @message-padding; //+@chat-photo-size;
+            padding-left: @message-padding;
             display: inline-block;
             vertical-align: top;
-            padding-top: 0px;
-            margin: 0px;
+            padding-top: 0;
+            margin: 0;
             color: white;
             font-size: @chat-photo-size/3;
           }
         }
         padding: @message-padding;
-        //background: red;
       }
     }
     .chatInput {
@@ -517,10 +499,10 @@ button:focus) {
       color: white;
       font-size: @bottom-height/3;
       padding-left: @bottom-height/3;
-      bottom: @bottom-height+2px; // 2px for bottom border and chat help
+      // 2px for bottom border and chat help
+      bottom: @bottom-height+2px;
       min-height: @bottom-height;
       width: 100%;
-      //box-sizing: border-box;
       box-sizing: border-box;
       &:focus {
         outline: none;
@@ -546,17 +528,17 @@ button:focus) {
   z-index: 10;
   bottom: @bottom-height+@panel-header-height;
 
-  //#logWindowCaret {
-  //  position: absolute;
-  //  top: -12px;
-  //  right: 86px;
-  //  border: 6px solid transparent;
-  //  border-bottom: 6px solid #000;
-  //}
+  #logWindowCaret {
+    position: absolute;
+    top: -12px;
+    right: 86px;
+    border: 6px solid transparent;
+    border-bottom: 6px solid #000;
+  }
 
   #logWindowContent {
     position: absolute;
-    left: 0px;
+    left: 0;
     right: 0;
     top: 0;
     bottom: 0;
@@ -567,14 +549,10 @@ button:focus) {
       color: rgba(255, 255, 255, 0.80);
       font-size: 10px;
       margin-bottom: 4px;
-      //padding: 4px 0 6px;
       margin-top: 4px;
-      //margin-top: 10px;
       margin-left: 4px;
       line-height: 13px;
       .logItemTop {
-        //position: absolute;
-        //padding-top: 10px;
         top: 0;
         left: 0;
         width: 50px;
@@ -589,7 +567,7 @@ button:focus) {
   }
 }
 
-/* special types for notifications and log */
+// TODO: Special types for notifications and log
 .itemType_fileAction {
   display: block;
   color: rgba(255, 255, 0, 0.80);
@@ -656,10 +634,7 @@ button:focus) {
 }
 
 .fileStatusBlock {
-  //position: absolute;
   display: inline-block;
-  //top: 5px;
-  //left: 5px;
   margin: 5px;
   width: 35px;
   background: #444;
@@ -694,11 +669,6 @@ button:focus) {
   height: 500px;
 }
 
-/*
-.fileBrowserMenuItem input:focus {
-  outline: 3px solid rgba(255, 255, 255, 0.75);
-}
-*/
 .fileBrowserMenuItem select {
   position: absolute;
   left: 133px;
@@ -1012,11 +982,7 @@ button:focus) {
   background: #ff3030;
 }
 
-/*
- * Edit Project
- */
 .editPane {
-  //position: absolute;
   left: 0;
   top: 0;
   right: 0;
@@ -1063,11 +1029,9 @@ button:focus) {
   left: 10px;
   top: 0;
   bottom: 0;
-  //height: 100%;
   background: #0A0A0A;
   border-right: 1px solid #1B1A1F;
   cursor: col-resize;
-  //z-index: 9999;
   flex-basis: 5px;
 }
 
@@ -1075,12 +1039,10 @@ button:focus) {
   top: 10px;
   left: 0;
   right: 0;
-  //width: 100%;
   flex-basis: 5px;
   background: #0A0A0A;
   border-bottom: 1px solid #1B1A1F;
   cursor: row-resize;
-  //z-index: 9999;
 }
 
 #paneDiv_0_1 {
@@ -1131,59 +1093,56 @@ button:focus) {
   bottom: 36px;
 }
 
-/*
- * Right click menu...
- */
-.rightClickContainer {
-  z-index: 999999;
-  cursor: default;
-  background: #fff;
-  padding: 5px;
-  font-size: 12px;
-}
-
-.rightClickMarker {
-  z-index: 999998;
-  cursor: default;
-  border: 2px solid rgba(255, 255, 0, 0.50);
-  width: 8px;
-  height: 8px;
-  margin-left: -3px;
-  margin-top: -3px;
-  border-radius: 10px;
-}
-
-.rightClickCornerCut {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 0;
-  height: 0;
-  border: 7px solid #000;
-  border-bottom: 7px solid rgba(0, 0, 0, 0.00);
-  border-left: 7px solid rgba(0, 0, 0, 0.00);
-  z-index: 100;
-}
-
-.rightClickItem {
-  color: #000;
-}
-
-.rightClickItemSpacer {
-  margin-left: 5px;
-  border-bottom: 1px dotted #000;
-  padding-top: 0;
-  margin-bottom: 4px;
-  padding-bottom: 4px;
-  margin-right: 4px;
-}
-
-.rightClickItemEl {
-  position: relative;
-  cursor: pointer;
-  padding: 2px 35px 2px 5px;
-}
-
-.rightClickItemEl:hover {
-  text-decoration: underline;
-}
+//.rightClickContainer {
+//  z-index: 999999;
+//  cursor: default;
+//  background: #fff;
+//  padding: 5px;
+//  font-size: 12px;
+//}
+//
+//.rightClickMarker {
+//  z-index: 999998;
+//  cursor: default;
+//  border: 2px solid rgba(255, 255, 0, 0.50);
+//  width: 8px;
+//  height: 8px;
+//  margin-left: -3px;
+//  margin-top: -3px;
+//  border-radius: 10px;
+//}
+//
+//.rightClickCornerCut {
+//  position: absolute;
+//  right: 0;
+//  top: 0;
+//  width: 0;
+//  height: 0;
+//  border: 7px solid #000;
+//  border-bottom: 7px solid rgba(0, 0, 0, 0.00);
+//  border-left: 7px solid rgba(0, 0, 0, 0.00);
+//  z-index: 100;
+//}
+//
+//.rightClickItem {
+//  color: #000;
+//}
+//
+//.rightClickItemSpacer {
+//  margin-left: 5px;
+//  border-bottom: 1px dotted #000;
+//  padding-top: 0;
+//  margin-bottom: 4px;
+//  padding-bottom: 4px;
+//  margin-right: 4px;
+//}
+//
+//.rightClickItemEl {
+//  position: relative;
+//  cursor: pointer;
+//  padding: 2px 35px 2px 5px;
+//}
+//
+//.rightClickItemEl:hover {
+//  text-decoration: underline;
+//}
