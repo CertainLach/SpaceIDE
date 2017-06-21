@@ -8,7 +8,7 @@ useStrict(true);
 
 // cSC - Code Split Component
 function cSC(importPromise) {
-    return class CodeSplitComponent extends React.Component {
+    return class CodeSplitComponent extends Component {
         static Component = null;
         state = {
             Component: CodeSplitComponent.Component

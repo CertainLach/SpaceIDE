@@ -1,10 +1,10 @@
-import * as React from "react";
+import React,{Component} from "react";
 import {inject, observer} from "mobx-react";
 import Helmet from "react-helmet";
 
 @inject('app')
 @observer
-export default class Root extends React.Component {
+export default class Root extends Component {
     render() {
         return (
             <Helmet>
