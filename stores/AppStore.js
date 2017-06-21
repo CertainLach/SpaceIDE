@@ -1,16 +1,16 @@
-import {
-    observable,
-    computed,
-    action
-} from 'mobx';
+import {action, computed, observable} from "mobx";
 
 export default class AppStore {
     @observable appName = 'SpaceIDE';
     @observable pageName = 'Unnamed';
-    @computed get title(){
+
+    @computed
+    get title() {
         return `${this.appName} - ${this.pageName}`;
     }
-    @action setPage(name = 'Unnamed'){
+
+    @action
+    setPage(name = 'Unnamed') {
         this.pageName = name;
     }
 }
