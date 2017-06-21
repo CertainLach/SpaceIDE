@@ -18,26 +18,21 @@
   height: 6px;
   width: 6px;
 }
-
 :global(::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment) {
   height: 0;
   display: block;
   background-color: transparent;
 }
-
 :global(::-webkit-scrollbar-track-piece) {
   background-color: transparent;
 }
-
 :global(::-webkit-scrollbar-thumb) {
   height: 50px;
   background: #222
 }
-
 :global(::-webkit-scrollbar-thumb:hover) {
   background: #FFF;
 }
-
 :global(:-webkit-full-screen) {
   width: 100%;
   height: 100%;
@@ -52,10 +47,11 @@
   overflow-x: hidden !important;
 }
 
-.highlightMixin{
+// To make elements a bit darker while not hovering on them
+.highlightMixin {
   transition: opacity .2s ease-in-out;
   opacity: .5;
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 }
@@ -64,6 +60,7 @@
 @file-browser-height: 400px;
 @file-browser-menu-height: 30px;
 
+// Any bottom panel (chat/project)
 .bottom {
   height: @bottom-height;
   position: absolute;
@@ -84,12 +81,16 @@
       bottom: @bottom-height;
     }
   }
+
+  // In chat help panel
   #chatHelp {
     .expandablePanel;
   }
+  // In project file browser
   #fileBrowser {
     .expandablePanel;
 
+    // Menu at bottom of file browser
     #fileBrowserMenu {
       height: @file-browser-menu-height;
       display: flex;
@@ -135,7 +136,6 @@
         letter-spacing: .1em;
         padding-bottom: 10px;
       }
-
       .fileBrowserSectFiles {
         left: 0;
         right: 0;
@@ -223,7 +223,7 @@
   }
   #chatBottomPanel {
     .bottomPanel;
-    .chatBottomItem{
+    .chatBottomItem {
       flex-grow: 1;
       //background: red;
       height: @bottom-height;
@@ -294,10 +294,10 @@
       background: url("../assets/images/filebrowse_open.png") center center no-repeat;
       cursor: pointer;
     }
-    #bottomLaunchButtons{
+    #bottomLaunchButtons {
       display: flex;
-      @button-icon-width:@bottom-height;
-      .launchButton{
+      @button-icon-width: @bottom-height;
+      .launchButton {
         .highlightMixin;
         display: inline;
         font-family: Arial, sans-serif;
@@ -327,6 +327,7 @@
 @panel-header-height: 15px;
 @ide-topbar-height: 35px;
 
+// Ide level top bar
 .ideTopBar {
   height: @ide-topbar-height;
   width: 100%;
@@ -358,7 +359,7 @@
     }
   }
 }
-
+// Edit panel level top bar
 .top {
   left: 0;
   right: 0;
@@ -414,11 +415,10 @@
 @notifications-top-offset: @panel-header-height + @ide-topbar-height;
 @notifications-right-offset: @panel-header-height;
 
+// Notifications panel
 #notifications {
-  /*display: none;*/
   position: absolute;
   right: @panel-header-height;
-  //top: 45px;
   top: @notifications-top-offset;
   width: 200px;
   overflow: visible;
@@ -437,14 +437,64 @@
     }
   }
 }
+// Notification log panel
+#logWindow {
+  position: absolute;
+  right: @notifications-right-offset;
+  top: @notifications-top-offset;
+  width: 200px;
+  background: #000;
+  z-index: 10;
+  bottom: @bottom-height+@panel-header-height;
 
-.chat{
+  #logWindowCaret {
+    position: absolute;
+    top: -12px;
+    right: 86px;
+    border: 6px solid transparent;
+    border-bottom: 6px solid #000;
+  }
+
+  #logWindowContent {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    .logItem {
+      position: relative;
+      background: rgba(0, 0, 0, 0.85);
+      color: rgba(255, 255, 255, 0.80);
+      font-size: 10px;
+      margin-bottom: 4px;
+      margin-top: 4px;
+      margin-left: 4px;
+      line-height: 13px;
+      .logItemTop {
+        top: 0;
+        left: 0;
+        width: 50px;
+        height: 0;
+        border-top: 1px solid #fff;
+      }
+      span {
+        padding-right: @notification-item-author-interval;
+        color: rgba(255, 255, 255, 0.50);
+      }
+    }
+  }
+}
+
+@message-padding: @bottom-height/6;
+@chat-photo-size: @bottom-height/3*2;
+
+// Chat (Both standalone and embedded in IDE)
+.chat {
   height: calc(~"100vh" - @ide-topbar-height);
   width: 100%;
   position: relative;
-  @message-padding: @bottom-height/6;
-  @chat-photo-size: @bottom-height/3*2;
-  bottom:0;
+  bottom: 0;
   top: 0;
   .chatContents {
     position: relative;
@@ -517,54 +567,6 @@
   color: #191919;
   display: inline-block;
   top: 12px;
-}
-
-#logWindow {
-  position: absolute;
-  right: @notifications-right-offset;
-  top: @notifications-top-offset;
-  width: 200px;
-  background: #000;
-  z-index: 10;
-  bottom: @bottom-height+@panel-header-height;
-
-  #logWindowCaret {
-    position: absolute;
-    top: -12px;
-    right: 86px;
-    border: 6px solid transparent;
-    border-bottom: 6px solid #000;
-  }
-
-  #logWindowContent {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow-y: scroll;
-    .logItem {
-      position: relative;
-      background: rgba(0, 0, 0, 0.85);
-      color: rgba(255, 255, 255, 0.80);
-      font-size: 10px;
-      margin-bottom: 4px;
-      margin-top: 4px;
-      margin-left: 4px;
-      line-height: 13px;
-      .logItemTop {
-        top: 0;
-        left: 0;
-        width: 50px;
-        height: 0;
-        border-top: 1px solid #fff;
-      }
-      span {
-        padding-right: @notification-item-author-interval;
-        color: rgba(255, 255, 255, 0.50);
-      }
-    }
-  }
 }
 
 // TODO: Special types for notifications and log

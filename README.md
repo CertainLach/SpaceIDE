@@ -25,8 +25,15 @@ Roadmap:
     - [ ] Preview panel 
         - [ ] Finish u-preview
     - [ ] Terminal panel
-    - [ ] Log panel (?)
+    - [ ] Log panel
+        - [ ] Rewrite u-logger from meteor.js to react
+        - [ ] Opensource u-logger
+        - [ ] Find the way to embed u-logger
+            - Iframe? (Ugly way)
+            - API?
+            - Make u-logger a part of SpaceIDE?
  - [ ] Chat panel
+    - [ ] Add LR split between project view and chat panel
     - [ ] Styles
         - [X] Normal message
         - [ ] Status message
@@ -36,6 +43,7 @@ Roadmap:
     - [ ] Text
     - [ ] Voice
         - [ ] Finish Potato.RTC
+            - Find the way WebRTC is not works outside of Google Chrome
     - [X] Standalone
     - [X] Toggle button (While not in chat)
  - [ ] Finish collaboration on backend 
@@ -46,8 +54,14 @@ Roadmap:
     - [X] Notification log
         - [X] Toggle button
     - [ ] Notification types
- - [ ] Project
- 
  - [X] IDE
     - [X] Add IDE level top menu
  - [ ] Fix mobx-dev-tool (Two last buttons)
+ - [ ] Authorization
+    - [ ] Finish uauth-server
+        - [ ] Finish vue.js ui
+            - [X] UI
+            - [ ] Interactivity
+        - [ ] Host on bluemix (uauth.f6cf.pw)
+    - [ ] Finish uauth-client
+        - [ ] Opensource uauth client
