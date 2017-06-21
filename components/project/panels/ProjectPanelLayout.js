@@ -1,18 +1,16 @@
-import React,{Component} from 'react';
+import React, {Component} from "react";
 
-import {main,row,column,panel,
+import {column, columnElem, main, panel, row, rowElem} from "../../../styles/flexPanels.less";
+import {editPane, fileStatusBlock, splitLR, splitTB, top} from "../../../styles/mainUi.less";
 
-    rowElem,
-    columnElem} from '../../../styles/flexPanels.less';
-import {top,fileStatusBlock,editPane,splitLR,splitTB} from '../../../styles/mainUi.less';
+class Panel {
+}
 
-class Panel{}
+const model = [new Panel(), [new Panel(), [new Panel(), [new Panel(), new Panel(), new Panel(), new Panel(), new Panel(), new Panel()]]]];
 
-const model=[new Panel(),[new Panel(),[new Panel(),[new Panel(),new Panel(),new Panel(),new Panel(),new Panel(),new Panel()]]]];
-
-class EditorPanel extends Component{
-    render(){
-        return <div className={panel+' '+editPane}>
+class EditorPanel extends Component {
+    render() {
+        return <div className={panel + ' ' + editPane}>
             <div className={top}>
                 <div className={fileStatusBlock}/>
 
@@ -35,40 +33,41 @@ function insertBetween(arr, value) {
         return result;
     }, []);
 }
-const SplitLR =props=> {
+
+const SplitLR = props => {
     console.log(props);
     return <div className={splitLR}/>;
 };
-const SplitTB =props=>{
+const SplitTB = props => {
     console.log(props);
     return <div className={splitTB}/>;
 };
 
-const Row=props=>{
-    const content=insertBetween(props.model.map(e=>{
-        if(e instanceof Panel)
+const Row = props => {
+    const content = insertBetween(props.model.map(e => {
+        if (e instanceof Panel)
             return <EditorPanel model={e}/>;
         else
             return <Column model={e}/>;
-    }),<SplitLR/>);
+    }), <SplitLR/>);
     return <div className={row}>
         {content}
     </div>
 };
-const Column=props=>{
-    const content=insertBetween(props.model.map(e=>{
-        if(e instanceof Panel)
+const Column = props => {
+    const content = insertBetween(props.model.map(e => {
+        if (e instanceof Panel)
             return <EditorPanel model={e}/>;
         else
             return <Row model={e}/>;
-    }),<SplitTB/>);
+    }), <SplitTB/>);
     return <div className={column}>
         {content}
     </div>
 };
 
-export default class ProjectPanelLayout extends Component{
-    render(){
+export default class ProjectPanelLayout extends Component {
+    render() {
         return <div className={main}>
             <Row model={model}/>
         </div>

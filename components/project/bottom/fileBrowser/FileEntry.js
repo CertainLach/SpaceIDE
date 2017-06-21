@@ -1,20 +1,20 @@
 import {
     fileEntry,
     fileEntryDir,
-    fileEntryUsers,
+    fileEntryFM,
     fileEntrySize,
     fileEntryTD,
-    fileEntryFM,
-} from '../../../../styles/mainUi.less';
-import React from 'react';
-import {observer,inject} from 'mobx-react';
-import * as filesize from 'filesize';
+    fileEntryUsers
+} from "../../../../styles/mainUi.less";
+import React from "react";
+import {inject, observer} from "mobx-react";
+import * as filesize from "filesize";
 
-export default inject('bottom')(observer(props=> {
-    let file=props.file;
-    let dir=file.path.substr(0,file.path.lastIndexOf('/')+1);
-    let fileName=file.path.substr(file.path.lastIndexOf('/')+1);
-    return <div className={fileEntry} onContextMenu={()=>props.bottom.selectFile(file.path)}>
+export default inject('bottom')(observer(props => {
+    let file = props.file;
+    let dir = file.path.substr(0, file.path.lastIndexOf('/') + 1);
+    let fileName = file.path.substr(file.path.lastIndexOf('/') + 1);
+    return <div className={fileEntry} onContextMenu={() => props.bottom.selectFile(file.path)}>
         <div className={fileEntryDir} title="File dir">{dir}</div>
         <div title="File name">{fileName}</div>
         <div className={fileEntryUsers} title="Users in file">{file.userCount}</div>

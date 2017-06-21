@@ -1,22 +1,19 @@
-import React,{Component} from 'react';
+import React, {Component} from "react";
 import {
-    projectBottomPanel,
     bottom,
     bottomLaunchButtons,
+    bottomLeft,
+    commitButton,
     filebrowserButton,
     fileHistory,
     fileHistoryItem,
-    commitButton,
     launchButton,
-    bottomLeft,
-    open
-} from '../../../styles/mainUi.less';
+    open,
+    projectBottomPanel
+} from "../../../styles/mainUi.less";
 import FileBrowser from "./fileBrowser/FileBrowser";
 
-import{
-    inject,
-    observer
-} from 'mobx-react';
+import {inject, observer} from "mobx-react";
 
 @inject('bottom')
 @observer
@@ -27,7 +24,8 @@ export default class ProjectBottomPanel extends Component {
             <div id={projectBottomPanel}>
                 {/*To left*/}
                 <div id={bottomLeft}>
-                    <div id={filebrowserButton} className={this.props.bottom.fileBrowserOpened?open:''} onClick={this.props.bottom.toggleFileBrowser}/>
+                    <div id={filebrowserButton} className={this.props.bottom.fileBrowserOpened ? open : ''}
+                         onClick={this.props.bottom.toggleFileBrowser}/>
                     <div id={fileHistory}>
                         <div className={fileHistoryItem}>None</div>
                         <div className={fileHistoryItem}>None</div>
