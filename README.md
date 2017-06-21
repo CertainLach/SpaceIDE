@@ -28,23 +28,26 @@ Roadmap:
     - [ ] Log panel (?)
  - [ ] Chat panel
     - [ ] Styles
-    - [ ] Text
-    - [ ] Voice
-        - [ ] Finish Potato.RTC
- - [ ] Finish collaboration on backend 
- - [ ] Create Potato.Socket component for React
- - [ ] Finish styles
-    - [ ] Rewrite to less
- - [ ] Notifications
-    - [X] Notification log
-    - [ ] Notification types
- - [ ] Project
-    - [ ] Add project-level top menu
- - [ ] Fix mobx-dev-tool (Two last buttons)
- - [ ] Chat
-    - [ ] Styles
         - [X] Normal message
         - [ ] Status message
         - [ ] Service message
         - [ ] Idea message
     - [ ] Mobx connection
+    - [ ] Text
+    - [ ] Voice
+        - [ ] Finish Potato.RTC
+    - [X] Standalone
+    - [X] Toggle button (While not in chat)
+ - [ ] Finish collaboration on backend 
+ - [ ] Create Potato.Socket component for React
+ - [ ] Finish styles
+    - [X] Rewrite to less
+ - [ ] Notifications
+    - [X] Notification log
+        - [X] Toggle button
+    - [ ] Notification types
+ - [ ] Project
+ 
+ - [X] IDE
+    - [X] Add IDE level top menu
+ - [ ] Fix mobx-dev-tool (Two last buttons)

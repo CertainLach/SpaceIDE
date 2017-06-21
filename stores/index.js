@@ -3,6 +3,7 @@ import AppStore from './AppStore';
 import BottomStore from './BottomStore';
 import NotificationStore from './NotificationStore';
 import {toJS} from 'mobx';
+import IDEStore from "./IDEStore";
 
 // Real store
 export function createStore() {
@@ -10,7 +11,8 @@ export function createStore() {
     return ({
         app: new AppStore(),
         bottom: new BottomStore(),
-        notification: new NotificationStore()
+        notification: new NotificationStore(),
+        ide: new IDEStore()
     });
 }
 

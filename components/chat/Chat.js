@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import {
-    bottom,chatInput,chat,chatBottom,chatBottomItem,circle,chatMessageList,chatMessage,content
+    chatContents,chatHelp,bottom,chatInput,chat,chatBottomPanel,chatBottomItem,circle,chatMessageList,chatMessage,content
 } from '../../styles/mainUi.less';
 import ChatBottomPanel from "./bottom/ChatBottomPanel";
 
 export default class Chat extends Component {
     render() {
-        return <div className={chat} style={{height:'100%',width:'100%'}}>
+        return <div className={chat}>
+            <div className={chatContents}>
             <div className={chatMessageList}>
                 <div className={chatMessage}>
                     <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
@@ -148,19 +149,25 @@ export default class Chat extends Component {
             </div>
             </div>
             <input className={chatInput} placeholder="Message"/>
-            <div className={bottom+' '+chatBottom}>
-                <div className={chatBottomItem}>
-                    <div className={circle}/>
+            <div className={bottom}>
+                <div id={chatHelp}>
+                    Chat help
                 </div>
-                <div className={chatBottomItem}>
-                    <div className={circle}/>
+                <div id={chatBottomPanel}>
+                    <div className={chatBottomItem}>
+                        <div className={circle}/>
+                    </div>
+                    <div className={chatBottomItem}>
+                        <div className={circle}/>
+                    </div>
+                    <div className={chatBottomItem}>
+                        <div className={circle}/>
+                    </div>
+                    <div className={chatBottomItem}>
+                        <div className={circle}/>
+                    </div>
                 </div>
-                <div className={chatBottomItem}>
-                    <div className={circle}/>
-                </div>
-                <div className={chatBottomItem}>
-                    <div className={circle}/>
-                </div>
+            </div>
             </div>
         </div>
     }

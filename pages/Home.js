@@ -9,7 +9,12 @@ import {
     fileHistoryItem,
     commitButton,
     launchButton,
-    bottomLeft
+    bottomLeft,
+    ideTopBar,
+    topMenu,
+    topMenuItem,
+    topMenuItemOpen,
+    active
 } from '../styles/mainUi.less';
 import{
     inject,
@@ -19,23 +24,30 @@ import ProjectPanelLayout from "../components/project/panels/ProjectPanelLayout"
 import NotificationList from '../components/project/notifications/notificationList/NotificationList';
 import NotificationLog from '../components/project/notifications/notificationLog/NotificationLog';
 import ProjectBottomPanel from "../components/project/bottom/ProjectBottomPanel";
+import Chat from "../components/chat/Chat";
 
 const FileBrowserMenuItem = props=><div onClick={props.onClick} className={fileBrowserMenuItem}>
     {props.title}
 </div>;
 
-@inject('app')
+@inject('app','ide')
 @observer
 export default class Home extends Component {
     componentWillMount(){
-        this.props.app.setPage('Главная');
+        // TODO
+        this.props.app.setPage('ProjectName');
     }
     render() {
         return <div style={{height:'100%',width:'100%'}}>
-            <NotificationList/>
-            <NotificationLog/>
-            <ProjectPanelLayout/>
-            <ProjectBottomPanel/>
+            <div style={{display:'flex'}}>
+                <div style={{width:'20%',display:'inline'}}>
+                    <Chat/>
+                </div>
+                <div style={{width:'80%',display:'inline'}}>
+                    <ProjectPanelLayout/>
+                    <ProjectBottomPanel/>
+                </div>
+            </div>
         </div>
     }
 }

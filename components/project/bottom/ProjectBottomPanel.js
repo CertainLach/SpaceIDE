@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {
-    bottomPanel,
+    projectBottomPanel,
     bottom,
     bottomLaunchButtons,
     filebrowserButton,
@@ -8,7 +8,8 @@ import {
     fileHistoryItem,
     commitButton,
     launchButton,
-    bottomLeft
+    bottomLeft,
+    open
 } from '../../../styles/mainUi.less';
 import FileBrowser from "./fileBrowser/FileBrowser";
 
@@ -23,10 +24,10 @@ export default class ProjectBottomPanel extends Component {
     render() {
         return <div className={bottom}>
             <FileBrowser/>
-            <div id={bottomPanel}>
+            <div id={projectBottomPanel}>
                 {/*To left*/}
                 <div id={bottomLeft}>
-                    <div id={filebrowserButton} onClick={this.props.bottom.toggleFileBrowser}/>
+                    <div id={filebrowserButton} className={this.props.bottom.fileBrowserOpened?open:''} onClick={this.props.bottom.toggleFileBrowser}/>
                     <div id={fileHistory}>
                         <div className={fileHistoryItem}>None</div>
                         <div className={fileHistoryItem}>None</div>

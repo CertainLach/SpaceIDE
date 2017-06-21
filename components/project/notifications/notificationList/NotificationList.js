@@ -8,10 +8,6 @@ import Notification from '../../../../../shared/Models/Notification';
 @observer
 export default class NotificationList extends Component{
     componentDidMount() {
-        // Test function
-        setInterval(()=>{
-            this.props.notification.addNotification(new Notification('green','123','f6cf'));
-        },1000);
         // TODO: Move to autoruns
         this.intervalId = setInterval(()=>{
             this.props.notification.updateNotifications()
