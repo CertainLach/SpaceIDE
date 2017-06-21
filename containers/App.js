@@ -1,9 +1,8 @@
-import {useStrict, observable, action} from 'mobx';
-import AppState, {AppStateProps} from './stores/AppState';
-import {Component} from 'react';
-import React from 'react';
-import {BrowserRouter, StaticRouter, Route, Switch} from 'react-router-dom';
-import PageWrapper from '../pages/PageWrapper';
+import {action, observable, useStrict} from "mobx";
+import {AppStateProps} from "./stores/AppState";
+import React, {Component} from "react";
+import {BrowserRouter, Route, StaticRouter, Switch} from "react-router-dom";
+import PageWrapper from "../pages/PageWrapper";
 
 useStrict(true);
 
@@ -11,13 +10,13 @@ useStrict(true);
 function cSC(importPromise) {
     return class CodeSplitComponent extends React.Component {
         static Component = null;
-        state = { 
-            Component: CodeSplitComponent.Component 
+        state = {
+            Component: CodeSplitComponent.Component
         };
 
         componentWillMount() {
-            const onDone=Component=>{
-                Component=Component.default||Component;
+            const onDone = Component => {
+                Component = Component.default || Component;
                 CodeSplitComponent.Component = Component
                 this.setState({Component})
             };
@@ -25,11 +24,12 @@ function cSC(importPromise) {
                 //const Component;
                 // Because in node System.import === require (see webpack.config)
                 //if(__BROWSER__)
-                    importPromise.then(onDone);
+                importPromise.then(onDone);
                 //else
                 //    onDone(importPromise);
             }
         }
+
         render() {
             const {Component} = this.state;
             if (Component) {
@@ -40,14 +40,14 @@ function cSC(importPromise) {
     }
 }
 
-class App extends Component{
-    render(){
+class App extends Component {
+    render() {
         // Route handling
-        const CurrentRouter=__BROWSER__?BrowserRouter:StaticRouter;
-        const routerParams=__NODE__?{
-            context:this.props.context,
-            location:this.props.req.url
-        }:{};
+        const CurrentRouter = __BROWSER__ ? BrowserRouter : StaticRouter;
+        const routerParams = __NODE__ ? {
+            context: this.props.context,
+            location: this.props.req.url
+        } : {};
         return (<PageWrapper>
             <CurrentRouter {...routerParams}>
                 <Switch>
