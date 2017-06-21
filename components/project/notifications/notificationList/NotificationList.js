@@ -4,6 +4,8 @@ import {inject, observer} from 'mobx-react';
 import NotificationItem from "./NotificationListItem";
 import Notification from '../../../../../shared/Models/Notification';
 
+const MAX_NOTIFICATION_LIST_NOTIFICATIONS = 4;
+
 @inject("notification")
 @observer
 export default class NotificationList extends Component{
@@ -18,7 +20,7 @@ export default class NotificationList extends Component{
     }
     render(){
         return <div id={notifications}>
-            {this.props.notification.notifications.filter(notification=>!notification.onlyLog).map(not=><NotificationItem key={not.key} notification={not}/>)}
+            {this.props.notification.notifications.filter(notification=>!notification.onlyLog).slice(1).slice(-MAX_NOTIFICATION_LIST_NOTIFICATIONS).map(not=><NotificationItem key={not.key} notification={not}/>)}
         </div>
     }
 }

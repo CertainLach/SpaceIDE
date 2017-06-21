@@ -5,7 +5,7 @@ import {
 } from 'mobx';
 import Notification from "../../shared/Models/Notification";
 
-const MAX_NOTIFICATION_COUNT=10;
+//const MAX_NOTIFICATION_COUNT=10;
 const NOTIFICATION_TIMEOUT=4000; // 4 sec
 const NOTIFICATION_LOG_TIMEOUT=60*1000*5; // 5 minutest
 
