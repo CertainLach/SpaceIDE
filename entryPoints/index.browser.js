@@ -12,7 +12,7 @@ const render = (Root, container = document.getElementById('App')) => {
         React.createElement(Root,{stores:store}),
         container,
     );
-}
+};
 
 render(Root);
 

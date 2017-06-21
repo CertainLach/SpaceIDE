@@ -1,17 +1,14 @@
-import React,{Component} from 'react';
-import{
-    inject,
-    observer
-} from 'mobx-react';
+import React, {Component} from "react";
+import {inject, observer} from "mobx-react";
 import Chat from "../components/chat/Chat";
 
-
-@inject('app','bottom')
+@inject('app')
 @observer
-export default class Home extends Component {
-    componentWillMount(){
-        this.props.app.setPage('Чат');
+export default class StandaloneChat extends Component {
+    componentWillMount() {
+        this.props.app.setPage('Standalone chat');
     }
+
     render() {
         return <Chat/>;
     }
