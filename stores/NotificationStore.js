@@ -13,14 +13,14 @@ export default class NotificationStore {
     @observable notifications = [
         new Notification('red','123123','f6cf')
     ];
-    @action.bound getNotificationPanelNotifications(){
-        console.log('panel');
-        return this.notifications;
-    }
-    @action.bound getNotificationLogNotifications(){
-        console.log('log');
-        return this.notifications;
-    }
+    // @action.bound getNotificationPanelNotifications(){
+    //     console.log('panel');
+    //     return this.notifications;
+    // }
+    // @action.bound getNotificationLogNotifications(){
+    //     console.log('log');
+    //     return this.notifications;
+    // }
     @action.bound addNotification(notification){
         // if(this.notifications.length+1>MAX_NOTIFICATION_COUNT)
         //     // TODO: Improve speed (every item is processed, even log)

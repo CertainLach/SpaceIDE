@@ -18,7 +18,7 @@ export default class NotificationList extends Component{
     }
     render(){
         return <div id={notifications}>
-            {this.props.notification.getNotificationPanelNotifications().filter(notification=>!notification.onlyLog).map(not=><NotificationItem key={not.key} notification={not}/>)}
+            {this.props.notification.notifications.filter(notification=>!notification.onlyLog).map(not=><NotificationItem key={not.key} notification={not}/>)}
         </div>
     }
 }

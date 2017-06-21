@@ -12,7 +12,7 @@ export default class NotificationLog extends Component{
         return <div id={logWindow}>
             {/*<div id={logWindowCaret}/>*/}
             <div id={logWindowContent} ref={(el) => { this.messagesContainer = el; }}>
-                {this.props.notification.getNotificationLogNotifications().map(not=><NotificationLogItem key={not.key} notification={not}/>)}
+                {this.props.notification.notifications.map(not=><NotificationLogItem key={not.key} notification={not}/>)}
             </div>
         </div>
     }
