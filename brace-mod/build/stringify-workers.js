@@ -1,18 +1,33 @@
 'use strict';
 
 var path   =  require('path')
-  , uglify =  require('uglify-js')
+  , UglifyJS =  require('uglify-js')
   , fs     =  require('fs')
   , workers = require('./workers')
   ;
 
 
 function minify(code) {
-  var compressor = uglify.Compressor()
-    , ast = uglify.parse(code);
+  var ast = UglifyJS.minify(code, {
+    parse: {},
+    compress: false,
+    mangle: false,
+    output: {
+        ast: true,
+        code: false
+    }
+  }).ast;
 
   ast.figure_out_scope();
-  return ast.transform(compressor).print_to_string();
+
+  return UglifyJS.minify(ast, {
+    compress: {},
+    mangle: {},
+    output: {
+        ast: false,
+        code: true
+    }
+  }).code;
 }
 
 module.exports = function () {
