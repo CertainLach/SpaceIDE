@@ -1,4 +1,5 @@
 import {action, computed, observable} from "mobx";
+import autobind from 'autobind-decorator'
 import Notification from "models/Notification";
 
 const NOTIFICATION_TIMEOUT = 4000; // 4s
@@ -7,13 +8,15 @@ const NOTIFICATION_LOG_TIMEOUT = 60 * 1000 * 5; // 5m
 export default class NotificationStore {
     @observable notifications = [];
 
-    @action.bound
+    @action
+    @autobind
     addNotification(notification) {
         this.notifications.push(notification);
         this.updateNotifications();
     }
 
-    @action.bound
+    @action
+    @autobind
     updateNotifications() {
         let currentTime = Date.now();
         this.notifications.forEach(notification => {

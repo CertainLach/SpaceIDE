@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+import autobind from 'autobind-decorator'
 import {
     column,
     columnElem,
@@ -135,6 +136,7 @@ class SplitterComponent extends Component {
     }
 
     @action
+    @autobind
     handleDrag(e) {
         let x = e.clientX;
         let y = e.clientY;
@@ -154,6 +156,7 @@ class SplitterComponent extends Component {
         if (this.props.model.size > 90) this.props.model.size = 90;
     }
 
+    @autobind
     handleDragEnd(e) {
         document.removeEventListener('mousemove', this.handleDrag);
         document.removeEventListener('mouseup', this.handleDragEnd);

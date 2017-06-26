@@ -1,43 +1,31 @@
 import {action, computed, observable} from "mobx";
-import File from "../../shared/Models/File";
+import autobind from 'autobind-decorator'
 
 export default class BottomStore {
     @observable fileBrowserOpened = false;
     @observable selectedFile = null;
-    @observable files = [
-        new File('stores/AppStore1.js', 2032, 1, 52),
-        new File('stores/App3Store.js', 2032, 1, 52),
-        new File('stores/App2Store.js', 2032, 1, 52),
-        new File('stores/4AppStore.js', 2032, 1, 52),
-        new File('stores/AppSto5re.js', 2032, 1, 52),
-        new File('stores/AppSto7re.js', 2032, 1, 52),
-        new File('stores/AppS6tore.js', 2032, 1, 52),
-        new File('stoares/AppStore.js', 2032, 1, 52),
-        new File('storess/AppStore.js', 2032, 1, 52),
-        new File('storecs/AppStore.js', 2032, 1, 52),
-        new File('stores/AppbStore.js', 2032, 1, 52),
-        new File('stoqres/AppStore.js', 2032, 1, 52),
-        new File('storeas/AppStore.js', 2032, 1, 52),
-        new File('stores/ApnpStore.js', 2032, 1, 52),
-        new File('stohfres/AppStore.js', 2032, 1, 52)
-    ];
+    @observable files = [];
 
-    @action.bound
+    @action
+    @autobind
     openFileBrowser() {
         this.fileBrowserOpened = true;
     }
 
-    @action.bound
+    @action
+    @autobind
     closeFileBrowser() {
         this.fileBrowserOpened = false;
     }
 
-    @action.bound
+    @action
+    @autobind
     toggleFileBrowser() {
         this.fileBrowserOpened = !this.fileBrowserOpened;
     }
 
-    @action.bound
+    @action
+    @autobind
     selectFile(name) {
         this.selectedFile = name;
     }
