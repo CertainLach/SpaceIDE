@@ -12,84 +12,73 @@ ace.define("ace/ext/gist", ["require", "exports", "module", "ace/lib/dom", "ace/
     acequire("../config").defineOptions(Editor.prototype, "editor", {
         enableGistSharing: {
             set: function (val) {
-                if (val) {
-                    let ace = this;
-                    let currentSession = ace.renderer.session;
-                    let keyUp, mouseUp;
+                let ace = this;
+                let currentSession = ace.renderer.session;
+                let keyUp, mouseUp;
 
-                    function updateIcon(e, renderer) {
-                        let selection = currentSession.selection;
-                        let range = selection.getRange();
-                        if (!isNaN(currentSession.row)) {
-                            currentSession.removeGutterDecoration(
-                                currentSession.row, icons.dark
-                            );
-                        }
-                        currentSession.row = null;
-                        if (range.isEmpty())
-                            return;
-                        currentSession.row = selection.getSelectionLead().row;
-                        currentSession.addGutterDecoration(
+                function updateIcon(e, renderer) {
+                    let selection = currentSession.selection;
+                    let range = selection.getRange();
+                    if (!isNaN(currentSession.row)) {
+                        currentSession.removeGutterDecoration(
                             currentSession.row, icons.dark
                         );
                     }
+                    currentSession.row = null;
+                    if (range.isEmpty())
+                        return;
+                    currentSession.row = selection.getSelectionLead().row;
+                    currentSession.addGutterDecoration(
+                        currentSession.row, icons.dark
+                    );
+                }
 
-                    ace.container.onkeydown = function (e) {
-                        if (e.shiftKey) {
-                            keyUp = false;
-                            return;
-                        }
+                ace.container.onkeydown = function (e) {
+                    if (e.shiftKey) {
+                        keyUp = false;
+                        return;
+                    }
+                    updateIcon();
+                };
+                ace.container.onkeyup = function (e) {
+                    if (!e.shiftKey) {
+                        keyUp = true;
                         updateIcon();
-                    };
-                    ace.container.onkeyup = function (e) {
-                        if (!e.shiftKey) {
-                            keyUp = true;
-                            updateIcon();
-                        }
-                    };
-                    ace.container.onmousedown = function () {
-                        mouseUp = false;
-                        updateIcon();
-                    };
+                    }
+                };
+                ace.container.onmousedown = function () {
+                    mouseUp = false;
+                    updateIcon();
+                };
 
-                    document.addEventListener("mouseup", function () {
-                        mouseUp = true;
-                        updateIcon();
-                    });
+                document.addEventListener("mouseup", function () {
+                    mouseUp = true;
+                    updateIcon();
+                });
 
-                    ace.on("guttermousedown", function (e) {
+                ace.on("guttermousedown", function (e) {
+                    e.stop();
+                    console.log(ace);
+                    // get clicked row
+                    const clickedRow = e.getDocumentPosition().row;
 
-                        // get clicked row
-                        const clickedRow = e.getDocumentPosition().row;
+                    // get clicked region
+                    const region = e.editor.renderer.$gutterLayer.getRegion(e);
 
-                        // get clicked region
-                        const region = e.editor.renderer.$gutterLayer.getRegion(e);
-
-                        // handle clicking on share icon
-                        if (region === "markers" && clickedRow === currentSession.row) {
-                            currentSession.addGutterDecoration(
-                                currentSession.row, icons.loading
-                            );
-                            fetch('https://api.github.com/gists', {
-                                method: 'post',
-                                body: JSON.stringify({
-                                    description: "Code shared from SpaceIDE",
-                                    // TODO: Filename
-                                    files: {"todo.filename": {"content": e.editor.getSelectedText()}},
-                                    public: true
-                                }),
-                                contentType: "application/json"
-                            }).then(response => response.json()).then(data => {
+                    // handle clicking on share icon
+                    if (region === "markers" && clickedRow === currentSession.row) {
+                        currentSession.addGutterDecoration(
+                            currentSession.row, icons.loading
+                        );
+                        e.editor._emit('gistCreated',{
+                            text:e.editor.getSelectedText(),
+                            cb(){
                                 currentSession.removeGutterDecoration(
                                     currentSession.row, icons.loading
                                 );
-                                prompt('Done adding gist, url:', data.html_url);
-                            });
-                        }
-                    }, true);
-                } else {
-                    throw new Error('Cannot disable gist handler!');
-                }
+                            }});
+                    }
+                }, true);
             },
             value: false
         }

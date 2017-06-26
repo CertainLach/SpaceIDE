@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {inject, observer} from "mobx-react";
-import Chat from "../components/chat/Chat";
+import Chat from "chat/Chat";
 
 @inject('app')
 @observer

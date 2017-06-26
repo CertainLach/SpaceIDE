@@ -11,7 +11,7 @@ import {
     chatMessageList,
     circle,
     content
-} from "../../styles/mainUi.less";
+} from "styles/mainUi.less";
 
 export default class Chat extends Component {
     render() {

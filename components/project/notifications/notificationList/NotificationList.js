@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {notifications} from "../../../../styles/mainUi.less";
+import {notifications} from "styles/mainUi.less";
 import {inject, observer} from "mobx-react";
 import NotificationItem from "./NotificationListItem";
 

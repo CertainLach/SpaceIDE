@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {notificationItem} from "../../../../styles/mainUi.less";
+import {notificationItem} from "styles/mainUi.less";
 
 export default class NotificationItem extends Component {
     render() {

@@ -59,6 +59,7 @@ export default class ReactAce extends Component {
         this.editor.on('copy', this.onCopy);
         this.editor.on('paste', this.onPaste);
         this.editor.on('change', this.onChange);
+        this.editor.on('notify', alert);
         this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
         this.editor.session.on('changeScrollTop', this.onScroll);
         this.editor.resize();

@@ -5,7 +5,7 @@ import {
     fileEntrySize,
     fileEntryTD,
     fileEntryUsers
-} from "../../../../styles/mainUi.less";
+} from "styles/mainUi.less";
 import React from "react";
 import {inject, observer} from "mobx-react";
 import * as filesize from "filesize";

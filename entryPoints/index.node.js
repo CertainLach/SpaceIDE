@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
-import Root from "../containers/Root";
-import {createServerStore, createStore} from "../stores";
+import Root from "containers/Root";
+import {createServerStore, createStore} from "stores";
 
 
 export async function render(req) {

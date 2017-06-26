@@ -10,7 +10,7 @@ import {
     launchButton,
     open,
     projectBottomPanel
-} from "../../../styles/mainUi.less";
+} from "styles/mainUi.less";
 import FileBrowser from "./fileBrowser/FileBrowser";
 
 import {inject, observer} from "mobx-react";

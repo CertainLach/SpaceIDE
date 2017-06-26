@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {logItem, logItemTop} from "../../../../styles/mainUi.less";
+import {logItem, logItemTop} from "styles/mainUi.less";
 
 export default class NotificationLogItem extends Component {
     render() {

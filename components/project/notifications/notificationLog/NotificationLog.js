@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {logWindow, logWindowCaret, logWindowContent} from "../../../../styles/mainUi.less";
+import {logWindow, logWindowCaret, logWindowContent} from "styles/mainUi.less";
 import {inject, observer} from "mobx-react";
 import NotificationLogItem from "./NotificationLogItem";
 import ReactDOM from "react-dom";

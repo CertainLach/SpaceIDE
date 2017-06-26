@@ -14,11 +14,11 @@ import {
     topMenu,
     topMenuItem,
     topMenuItemOpen
-} from "../styles/mainUi.less";
+} from "styles/mainUi.less";
 import {inject, observer} from "mobx-react";
-import ProjectPanelLayout from "../components/project/panels/ProjectPanelLayout";
-import ProjectBottomPanel from "../components/project/bottom/ProjectBottomPanel";
-import Chat from "../components/chat/Chat";
+import ProjectPanelLayout from "project/panels/ProjectPanelLayout";
+import ProjectBottomPanel from "project/bottom/ProjectBottomPanel";
+import Chat from "chat/Chat";
 
 const FileBrowserMenuItem = props => <div onClick={props.onClick} className={fileBrowserMenuItem}>
     {props.title}
@@ -35,10 +35,10 @@ export default class Home extends Component {
     render() {
         return <div style={{height: '100%', width: '100%'}}>
             <div style={{display: 'flex'}}>
-                <div style={{width: '20%', display: 'inline'}}>
+                <div style={{width: '20%', display: 'inline', position: 'relative'}}>
                     <Chat/>
                 </div>
-                <div style={{width: '80%', display: 'inline'}}>
+                <div style={{width: '80%', display: 'inline', position: 'relative'}}>
                     <ProjectPanelLayout/>
                     <ProjectBottomPanel/>
                 </div>

@@ -1,4 +1,4 @@
-import {fileBrowserSectFiles, fileBrowserSection, fileBrowserSectTitle} from "../../../../styles/mainUi.less";
+import {fileBrowserSectFiles, fileBrowserSection, fileBrowserSectTitle} from "styles/mainUi.less";
 import React from "react";
 
 export default props => <div className={fileBrowserSection}>

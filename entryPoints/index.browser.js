@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import Root from "../containers/Root";
-import {createClientStore, createStore} from "../stores";
+import Root from "containers/Root";
+import {createClientStore, createStore} from "stores";
 
 const store = createClientStore(createStore());
 

@@ -1,4 +1,4 @@
-import {fileBrowser, open} from "../../../../styles/mainUi.less";
+import {fileBrowser, open} from "styles/mainUi.less";
 
 import {inject, observer} from "mobx-react";
 import FileBrowserSection from "./FileBrowserSection";

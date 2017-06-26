@@ -1,4 +1,4 @@
-import {fileBrowserMenu, mainMenu, selectedFileMenu} from "../../../../../styles/mainUi.less";
+import {fileBrowserMenu, mainMenu, selectedFileMenu} from "styles/mainUi.less";
 
 import {inject, observer} from "mobx-react";
 import FileBrowserMenuButton from "./FileBrowserMenuButton";

@@ -641,8 +641,19 @@
   display: inline-block;
   margin: 5px;
   width: 35px;
-  background: #444;
   height: 5px;
+  &.errored {
+    background: darkred;
+  }
+  &.saved {
+    background: green;
+  }
+  &.saving {
+    background: yellow;
+  }
+  &.idle {
+    background: #444;
+  }
 }
 
 #logOutput {

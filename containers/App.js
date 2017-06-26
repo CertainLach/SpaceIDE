@@ -3,42 +3,9 @@ import {AppStateProps} from "./stores/AppState";
 import React, {Component} from "react";
 import {BrowserRouter, Route, StaticRouter, Switch} from "react-router-dom";
 import PageWrapper from "../pages/PageWrapper";
+import {cSC} from '../components/utils/CodeSplitComponent';
 
 useStrict(true);
-
-// cSC - Code Split Component
-function cSC(importPromise) {
-    return class CodeSplitComponent extends Component {
-        static Component = null;
-        state = {
-            Component: CodeSplitComponent.Component
-        };
-
-        componentWillMount() {
-            const onDone = Component => {
-                Component = Component.default || Component;
-                CodeSplitComponent.Component = Component
-                this.setState({Component})
-            };
-            if (!this.state.Component) {
-                //const Component;
-                // Because in node System.import === require (see webpack.config)
-                //if(__BROWSER__)
-                importPromise.then(onDone);
-                //else
-                //    onDone(importPromise);
-            }
-        }
-
-        render() {
-            const {Component} = this.state;
-            if (Component) {
-                return <Component {...this.props} />
-            }
-            return null;
-        }
-    }
-}
 
 class App extends Component {
     render() {

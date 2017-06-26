@@ -17,9 +17,9 @@ import {
     topMenu,
     topMenuItem,
     topMenuItemOpen
-} from "../styles/mainUi.less";
-import NotificationLog from "../components/project/notifications/notificationLog/NotificationLog";
-import NotificationList from "../components/project/notifications/notificationList/NotificationList";
+} from "styles/mainUi.less";
+import NotificationLog from "project/notifications/notificationLog/NotificationLog";
+import NotificationList from "project/notifications/notificationList/NotificationList";
 
 @inject('ide')
 @observer

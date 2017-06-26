@@ -12,7 +12,7 @@ export default class Root extends Component {
                 <div>
                     <Header/>
                     <App {...this.props}/>
-                    <DevTools/>
+                    {/*<DevTools/>*/}
                 </div>
             </Provider>
         );
