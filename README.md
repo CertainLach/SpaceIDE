@@ -14,14 +14,15 @@ Libraries/Platforms used:
  - XPress
  - Webpack
  - Reach (Inferno in production)
- - Ot.JS (For collaboration)
+ - C9.io (Ported collab extension)
  
 
 Roadmap:
 --------
- - [ ] Finish panel layout
+ - [X] Finish panel layout
+    - [X] Synchronize with mobx (model)
  - [ ] Add panels
-    - [ ] Code editor panel (Based on ace.js + ot.js)
+    - [X] Code editor panel (Based on ace.js)
     - [ ] Preview panel 
         - [ ] Finish u-preview
     - [ ] Terminal panel
@@ -43,12 +44,12 @@ Roadmap:
     - [ ] Text
     - [ ] Voice
         - [ ] Finish Potato.RTC
-            - Find the way WebRTC is not works outside of Google Chrome
+            - [X] Find the way WebRTC is not works outside of Google Chrome
     - [X] Standalone
     - [X] Toggle button (While not in chat)
  - [ ] Finish collaboration on backend 
- - [ ] Create Potato.Socket component for React
- - [ ] Finish styles
+ - [X] Create Potato.Socket component for React
+ - [X] Finish styles
     - [X] Rewrite to less
  - [ ] Notifications
     - [X] Notification log
@@ -56,7 +57,7 @@ Roadmap:
     - [ ] Notification types
  - [X] IDE
     - [X] Add IDE level top menu
- - [ ] Fix mobx-dev-tool (Two last buttons)
+ - [X] Fix mobx-dev-tool (Two last buttons)
  - [ ] Authorization
     - [ ] Finish uauth-server
         - [ ] Finish vue.js ui

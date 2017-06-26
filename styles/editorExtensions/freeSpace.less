@@ -1,0 +1,31 @@
+.previewsContainer {
+
+}
+
+// Why not?
+#previewNamePrefix{}
+
+.preview {
+  position: absolute;
+  right: 20px;
+  border-left: 2px dotted rgba(128,128,128,0.5);
+  padding: 2px 2px 2px 7px;
+  overflow: hidden;
+  cursor: text;
+  * {
+    pointer-events: auto;
+  }
+  img {
+    height: 100%;
+    width: auto;
+    background-color: rgba(128,128,128,0.85);
+    &:hover {
+      outline: 2px solid #808080;
+    }
+  }
+  iframe {
+    height: 100%;
+    width: 100%;
+    background: #808080;
+  }
+}

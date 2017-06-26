@@ -1,49 +1,19 @@
-ace.define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/dom", "ace/editor", "ace/config"], function(acequire, exports, module) {
-    // TODO: move to less?
-    var fsPreviewCss = `
-    .ace_fs_preview {
-        position: absolute;
-        right: 20px;
-        border-left: 2px dotted rgba(128,128,128,0.5);
-        padding: 2px;
-        padding-left: 7px;
-        overflow: hidden;
-        cursor: text;
-    }
-    .ace_fs_preview > * {
-        pointer-events: auto;
-    }
+// noinspection JSUnresolvedVariable
+import {preview, previewNamePrefix, previewsContainer} from "../../styles/editorExtensions/freeSpace.less";
 
-    .ace_fs_preview img {
-        height: 100%; 
-        width: auto; 
-        background-color: rgba(128,128,128,0.85);
-    }
-    .ace_fs_preview img:hover {
-        outline: 2px solid #808080;
-    }
-
-    .ace_fs_preview iframe {
-        height: 100%;
-        width: 100%; 
-        background: #808080;
-    }
-    `;
-
-    const dom = acequire("../lib/dom");
-    dom.importCssString(fsPreviewCss, "ace_fs_previews");
-
+ace.define("ace/ext/freespace", ["require", "exports", "module", "ace/lib/dom", "ace/editor", "ace/config"], function (acequire) {
     const Editor = acequire("../editor").Editor;
 
-    // TODO: Use only for images (Since youtube videos takes soo much ram)
-    const MAX_UNSEEN = 0;
+    const MAX_UNSEEN = 3;
+    const MAX_FREE_LINES = 8;
 
     // TODO: Use browser crypto hash (or no?)
-    function stringHashAbs(str) {
-        str = str || "";
-        var hash = 0,
-            i, chr, len;
-        if (str.length == 0) return hash;
+    function stringHashAbs(str = '') {
+        let hash = 0;
+        let i;
+        let chr;
+        let len;
+        if (str.length === 0) return hash;
         for (i = 0, len = str.length; i < len; i++) {
             chr = str.charCodeAt(i);
             hash = ((hash << 5) - hash) + chr;
@@ -54,7 +24,7 @@ ace.define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/dom",
 
     // Port from jQuery (but with filter callback)
     function nextAll(element, filter) {
-        const siblings = [...element.parentNode.children];
+        const siblings = Array.from(element.parentNode.children);
         let next = siblings.slice(siblings.indexOf(element) + 1);
         if (filter) {
             next = next.filter(filter);
@@ -62,13 +32,32 @@ ace.define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/dom",
         return next;
     }
 
+    function parents(elem, filter) {
+        const elements = [];
+
+        while ((elem = elem.parentElement) !== null) {
+            if (elem.nodeType !== Node.ELEMENT_NODE) {
+                continue;
+            }
+
+            if (filter && filter(elem)) {
+                elements.push(elem);
+            }
+        }
+
+        return elements;
+    }
+
     function onAfterRender(err, renderer) {
         // Get preview layer of current editor
-        const previewContents = renderer.container.getElementsByClassName('ace_fs_previews')[0];
+        const previewContents = renderer.container.getElementsByClassName(previewsContainer)[0];
         // Hide ALL previews
-        [...previewContents.getElementsByClassName('ace_fs_preview')].forEach(e => e.classList.add('unseen'));
+        for (const previewElement of previewContents.getElementsByClassName(preview)) {
+            previewElement.classList.add('unseen');
+        }
         // Now process every link in container
-        [...renderer.content.getElementsByClassName('ace_link')].forEach((currentLink, index) => {
+        let previewNumber = 1;
+        for (const currentLink of renderer.content.getElementsByClassName('ace_link')) {
             const url = currentLink.textContent;
             let previewType;
             let renderData;
@@ -77,38 +66,45 @@ ace.define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/dom",
             if (renderTempData = url.match(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([^<]+)/)) {
                 renderData = renderTempData;
                 previewType = 'youtube';
+                // Image
             } else if (renderTempData = url.match(/.*\.(jpg|gif|png|jpeg|ico|svg|bmp)$/)) {
                 renderData = renderTempData;
                 previewType = 'image';
             }
             if (previewType) {
-                const lineGroup = [...currentLink.getElementsByClassName('.ace_line_group')].map(e => e.parentNode);
-                const previewId = "fsp_id_" + stringHashAbs(lineGroup.text()) + "_" + stringHashAbs(url);
+                console.log(previewType);
+                const lineGroups = parents(currentLink, e => e.classList.contains('ace_line_group'))[0];
+                const previewId = `${previewNamePrefix}_${previewNumber}_${stringHashAbs(lineGroups.textContent)}_${stringHashAbs(url)}`;
                 let blankLineCount = 0;
                 let blankLineHeight = 0;
-                let nextGroups = nextAll(lineGroup, e => e.classList.contains('ace_line_group'));
+                console.log(lineGroups);
+                let nextGroups = nextAll(lineGroups, e => e.classList.contains('ace_line_group'));
+                console.log(nextGroups);
                 for (let nextGroup of nextGroups) {
-                    // TODO: trim?
-                    if (nextGroup.textContent !== '') break;
+                    console.log(blankLineCount, nextGroup);
+                    if (nextGroup.textContent.trim() !== '') break;
                     blankLineHeight += +nextGroup.style.height.slice(0, -2); // Slice because there is "px" in styles
                     blankLineCount++;
+                    if (blankLineCount >= MAX_FREE_LINES)
+                        break; // Dont make very big previews
                 }
                 // Enought space for preview
                 if (blankLineCount > 1) {
                     // Preview offsets and size calculation
-                    const previewTopOffset = (currentLink.offsetTop + (+currentLink.style.height.slice(0, -2)) + 2) + 'px';
-                    const previewLeftOffset = (currentLink.offsetLeft + 6) + "px";
-                    const previewHeight = (blankLineHeight - 8) + "px";
-                    const previewWidth = "auto";
+                    let previewTopOffset = (currentLink.offsetTop + currentLink.offsetHeight + 2) + 'px';
+                    let previewLeftOffset = (currentLink.offsetLeft + 6) + "px";
+                    let previewHeight = (blankLineHeight - 8) + "px";
+                    let previewWidth = "auto";
+                    console.log(previewTopOffset, previewLeftOffset, previewHeight, previewWidth);
                     // Rendering
                     // If already rendered
-                    const previewElement = document.getElementById(previewId);
+                    let previewElement = document.getElementById(previewId);
                     // On error (?)
-                    const contentHtml = "...";
+                    let contentHtml = "...";
                     switch (previewType) {
                         case "youtube":
                             contentHtml = `<iframe src="http://www.youtube.com/embed/${renderData}?modestbranding=1&rel=0&wmode=transparent&theme=light&color=white" frameborder="0" allowfullscreen></iframe>`;
-                            // TODO: Recalculate player width?
+                            previewWidth = Math.max(120, Math.min(640, Math.ceil(parseFloat(previewHeight) * 16.0 / 9.0))) + "px";
                             break;
                         case "image":
                             contentHtml = `<a href="${url}" target='_blank'><img src="${url}" /></a>`;
@@ -116,13 +112,13 @@ ace.define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/dom",
                     }
                     // Preview is not created?
                     let createNew = false;
-                    if (previewElement.length === 0)
+                    if (!previewElement)
                         createNew = true;
 
                     if (createNew) {
                         // Create new
                         previewElement = document.createElement('div');
-                        previewElement.classList.add('ace_fs_preview');
+                        previewElement.classList.add(preview);
                         previewElement.innerHTML = contentHtml;
                         previewElement.id = previewId;
                     }
@@ -134,7 +130,7 @@ ace.define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/dom",
                     previewElement.style.width = previewWidth;
 
                     if (createNew) {
-                        previewContents.insertBefore(el, previewContents.firstChild);
+                        previewContents.insertBefore(previewElement, previewContents.firstChild);
                     } else {
                         previewElement.classList.remove('unseen');
                         // Show
@@ -142,32 +138,45 @@ ace.define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/dom",
                     }
                 }
             }
-        });
+            previewNumber++;
+        }
         let unseenPreviews = previewContents.getElementsByClassName('unseen');
-        unseenPreviews.forEach(e => e.style.display = 'none'); // Hide offscreen
+        // Hide offscreen
+        for (const e of unseenPreviews) {
+            e.style.display = 'none';
+        }
+        // Remove unseen if limit exceeded
         if (unseenPreviews.length > MAX_UNSEEN) {
-            unseenPreviews.slice(-(unseenPreviews.length - MAX_UNSEEN)).forEach(e => {
+            for (const e of Array.from(unseenPreviews).slice(-(unseenPreviews.length - MAX_UNSEEN))) {
                 e.parentNode.removeChild(e);
-            });
+            }
         }
     }
 
     acequire("../config").defineOptions(Editor.prototype, "editor", {
         enableFreeSpacePreviews: {
-            set: function(val) {
+            set: function (val) {
                 if (val) {
                     this.renderer.on("afterRender", onAfterRender);
-                    $(this.container).find(".ace_content").append("<div class='ace_layer ace_fs_previews'></div>");
+                    let previewContainer = document.createElement('div');
+                    previewContainer.classList.add('ace_layer');
+                    previewContainer.classList.add(previewsContainer);
+                    Array.from(this.container.getElementsByClassName('ace_content')).forEach(e => {
+                        e.appendChild(previewContainer);
+                    });
                 } else {
                     this.renderer.off("afterRender", onAfterRender);
-                    $(this.container).find(".ace_content .ace_layer.ace_fs_previews").remove();
+                    Array.from(this.container.getElementsByClassName(previewsContainer)).forEach(e => {
+                        e.parentNode.removeChild(e);
+                    });
                 }
             },
-            value: true
+            value: false
         }
     });
 });
 
-(function() {
-    ace.acequire(["ace/ext/freespace"], function() {});
+(function () {
+    ace.acequire(["ace/ext/freespace"], function () {
+    });
 })();

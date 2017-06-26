@@ -168,6 +168,160 @@ export default class Chat extends Component {
                                 asd</p>
                         </div>
                     </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
+                    <div className={chatMessage}>
+                        <img src="https://pp.userapi.com/c631525/v631525415/43d9e/7xN9U7nTl0E.jpg"/>
+                        <div className={content}>
+                            <span>F6CF, 22 hours ago</span>
+                            <p>Hello world<br/>
+                                sda<br/>
+                                asdas<br/>
+                                asd<br/>
+                                asd</p>
+                        </div>
+                    </div>
                 </div>
                 <input className={chatInput} placeholder="Message"/>
                 <div className={bottom}>

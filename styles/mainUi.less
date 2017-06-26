@@ -67,6 +67,8 @@
   bottom: 0;
   display: flex;
   width: 100%;
+  // To make it display over ace.js
+  z-index: 20;
   // Mixin for any expandable panel in bottom
   .expandablePanel {
     position: absolute;
@@ -77,6 +79,7 @@
     background: rgba(0, 0, 0, 0.90);
     border-top: 1px solid #222;
     transition: all .4s ease-in;
+    //opacity: 0.6;
     &.open {
       bottom: @bottom-height;
     }
@@ -368,30 +371,29 @@
   background: #080808;
   border-bottom: 1px solid #000;
 
-  #topStatus {
+  .topStatus {
     position: absolute;
     top: 0;
     left: 0;
-  }
+    .topProjName, .topFileName {
+      display: inline-block;
+      z-index: 0;
+      font-size: 10px;
+      font-weight: 300;
+      text-align: left;
+      line-height: 16px;
+      vertical-align: top;
+      padding-left: 46px;
+      color: #888;
+    }
 
-  #topProjName, #topFileName {
-    display: inline-block;
-    z-index: 0;
-    font-size: 10px;
-    font-weight: 300;
-    text-align: left;
-    line-height: 16px;
-    vertical-align: top;
-    padding-left: 46px;
-    color: #888;
-  }
-
-  #topFileName {
-    color: #FFF;
-    font-weight: 400;
-    padding-left: 1px;
-    line-height: 14px;
-    font-family: monospace;
+    .topFileName {
+      color: #FFF;
+      font-weight: 400;
+      padding-left: 3px;
+      //line-height: 14px;
+      font-family: monospace;
+    }
   }
 
   #topSpaceLink {
@@ -990,6 +992,14 @@
   right: 0;
   bottom: 0;
   background: darkred;
+  position: relative;
+  display:flex;
+  flex-direction: column;
+}
+
+.aceEditorContainer{
+  flex-grow: 2;
+  width: 100%;
 }
 
 .editPane iframe {

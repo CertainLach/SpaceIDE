@@ -3,4 +3,4 @@ It is a modified version of (brace)[https://github.com/thlorenz/brace], since i 
 
 # TODO:
  - [ ] Linting support
- - [ ] Freespace  
+ - [X] Freespace  
