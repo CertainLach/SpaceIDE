@@ -1,31 +1,26 @@
 import {action, computed, observable} from "mobx";
-import autobind from 'autobind-decorator'
 
 export default class BottomStore {
     @observable fileBrowserOpened = false;
     @observable selectedFile = null;
     @observable files = [];
 
-    @action
-    @autobind
+    @action.bound
     openFileBrowser() {
         this.fileBrowserOpened = true;
     }
 
-    @action
-    @autobind
+    @action.bound
     closeFileBrowser() {
         this.fileBrowserOpened = false;
     }
 
-    @action
-    @autobind
+    @action.bound
     toggleFileBrowser() {
         this.fileBrowserOpened = !this.fileBrowserOpened;
     }
 
-    @action
-    @autobind
+    @action.bound
     selectFile(name) {
         this.selectedFile = name;
     }

@@ -7,6 +7,8 @@ import "brace-mod/ext-custom/freespace";
 import "brace-mod/ext-custom/gist";
 import "brace-mod/ext/linking";
 import "brace-mod/theme/chaos";
+import copy from 'copy-to-clipboard';
+
 
 import React,{Component} from 'react';
 import {
@@ -43,15 +45,24 @@ export default class CodeEditorPanel extends Component{
                     method: 'post',
                     body: JSON.stringify({
                         description: "Code shared from SpaceIDE",
-                        files: {"todo.filename": {"content": e.text}},
+                        files: {[this.props.model.fileName]: {"content": e.text}},
                         public: true
                     }),
                     contentType: "application/json"
                 }).then(response => response.json()).then(data => {
                     e.cb();
-                    this.props.notification.addNotification(new Notification('yellow','Link copied to your clipboard','GIST'))
-                    //prompt('Done adding gist, url:', data.html_url);
-                });
+                    if(!data.html_url){
+                        this.props.notification.addNotification(new Notification('red','Cannot create gist!','GIST'));
+                    }else {
+                        copy(data.html_url, {
+                            debug: true,
+                            message: 'Gist url (Press #{key} to copy):',
+                        });
+                        this.props.notification.addNotification(new Notification('yellow', 'Link copied to your clipboard', 'GIST'));
+                    }
+                }).catch(e=>{
+                    this.props.notification.addNotification(new Notification('red','Cannot create gist!','GIST'));
+                })
             }
         });
         console.log(this.editor);

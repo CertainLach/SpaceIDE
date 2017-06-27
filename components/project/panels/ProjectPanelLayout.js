@@ -135,8 +135,7 @@ class SplitterComponent extends Component {
         document.addEventListener('mouseup', this.handleDragEnd);
     }
 
-    @action
-    @autobind
+    @action.bound
     handleDrag(e) {
         let x = e.clientX;
         let y = e.clientY;
