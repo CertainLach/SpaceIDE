@@ -1,4 +1,4 @@
-![SpaceIDE Logo](./assets/images/OS_IP_C.png) 
+![SpaceIDE Logo](./frontend/assets/images/OS_IP_C.png) 
 
 SpaceIDE
 --------
@@ -14,49 +14,50 @@ Libraries/Platforms used:
  - XPress
  - Webpack
  - Reach (Inferno in production)
- - C9.io (Ported collab extension)
  
 
 Roadmap:
 --------
- - [X] Finish panel layout
-    - [X] Synchronize with mobx (model)
- - [ ] Add panels
-    - [X] Code editor panel (Based on ace.js)
-    - [ ] Preview panel 
-        - [ ] Finish u-preview
-    - [ ] Terminal panel
-    - [ ] Log panel
-        - [ ] Rewrite u-logger from meteor.js to react
-        - [ ] Opensource u-logger
-        - [ ] Find the way to embed u-logger
-            - Iframe? (Ugly way)
-            - API?
-            - Make u-logger a part of SpaceIDE?
- - [ ] Chat panel
-    - [ ] Add LR split between project view and chat panel
-    - [ ] Styles
-        - [X] Normal message
-        - [ ] Status message
-        - [ ] Service message
-        - [ ] Idea message
-    - [ ] Mobx connection
-    - [ ] Text
-    - [ ] Voice
-        - [ ] Finish Potato.RTC
-            - [X] Find the way WebRTC is not works outside of Google Chrome
-    - [X] Standalone
-    - [X] Toggle button (While not in chat)
+ - [ ] Frontend
+     - [X] Finish panel layout
+        - [X] Synchronize with mobx (model)
+     - [ ] Add panels
+        - [X] Code editor panel (Based on ace.js)
+        - [ ] Preview panel 
+            - [ ] Finish u-preview
+        - [ ] Terminal panel
+        - [ ] Log panel
+            - [ ] Rewrite u-logger from meteor.js to react
+            - [ ] Opensource u-logger
+            - [ ] Find the way to embed u-logger
+                - Iframe? (Ugly way)
+                - API?
+                - Make u-logger a part of SpaceIDE?
+        - [ ] Chat panel
+            - [ ] Add LR split between project view and chat panel
+            - [ ] Styles
+                - [X] Normal message
+                - [ ] Status message
+                - [ ] Service message
+                - [ ] Idea message
+            - [ ] Mobx connection
+            - [ ] Text
+            - [ ] Voice
+                - [ ] Finish Potato.RTC
+                    - [X] Find the way WebRTC is not works outside of Google Chrome
+            - [X] Standalone
+            - [X] Toggle button (While not in chat)
+     - [X] Finish styles
+        - [X] Rewrite to less
+     - [X] IDE
+        - [X] Add IDE level top menu
+     - [X] Notifications
+        - [X] Notification log
+            - [X] Toggle button
+    
+    
  - [ ] Finish collaboration on backend 
  - [X] Create Potato.Socket component for React
- - [X] Finish styles
-    - [X] Rewrite to less
- - [ ] Notifications
-    - [X] Notification log
-        - [X] Toggle button
-    - [ ] Notification types
- - [X] IDE
-    - [X] Add IDE level top menu
  - [X] Fix mobx-dev-tool (Two last buttons)
  - [ ] Authorization
     - [ ] Finish uauth-server
@@ -66,3 +67,11 @@ Roadmap:
         - [ ] Host on bluemix (uauth.f6cf.pw)
     - [ ] Finish uauth-client
         - [ ] Opensource uauth client
+ - [X] Webpack config
+    - [X] Protodef loader
+    - [X] CSS Modules
+ - [X] Operational transformations
+ - [ ] Move to typescript
+    - Later?
+ - [ ] Backend
+ - [ ] Fix paths

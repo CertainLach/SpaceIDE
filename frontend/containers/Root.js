@@ -10,9 +10,9 @@ export default class Root extends Component {
         return (
             <Provider {...this.props.stores}>
                 <div>
-                    <Header/>
                     <App {...this.props}/>
-                    {/*<DevTools/>*/}
+                    {__DEVELOPMENT__?<DevTools/>:null}
+                    <Header/>
                 </div>
             </Provider>
         );

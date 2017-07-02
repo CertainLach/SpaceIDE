@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noEmit": true,
+    "jsx": "react",
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "strictNullChecks": false,
+    "allowUnreachableCode": true,
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "allowJs": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "baseUrl": "../",
+    "paths": {
+      "*": [
+        "*",
+        "node_modules/*",
+        "backend/*",
+        "frontend/*",
+        "frontend/components/*",
+        "shared/*"
+      ]
+    }
+  }
+}

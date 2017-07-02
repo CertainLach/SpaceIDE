@@ -1,5 +1,4 @@
 import {action, observable, useStrict} from "mobx";
-import {AppStateProps} from "./stores/AppState";
 import React, {Component} from "react";
 import {BrowserRouter, Route, StaticRouter, Switch} from "react-router-dom";
 import PageWrapper from "../pages/PageWrapper";
@@ -17,11 +16,17 @@ class App extends Component {
         } : {};
         return (<PageWrapper>
             <CurrentRouter {...routerParams}>
-                <Switch>
+                {__BROWSER__?<Switch>
+                    {/*Browser side*/}
                     <Route exact path="/" component={cSC(System.import('../pages/Home'))}/>
                     <Route exact path="/chat" component={cSC(System.import('../pages/StandaloneChat'))}/>
                     <Route path="*" component={cSC(System.import('../pages/NotFound'))}/>
-                </Switch>
+                </Switch>:<Switch>
+                    {/*Node.js side*/}
+                    <Route exact path="/" component={require('../pages/Home')}/>
+                    <Route exact path="/chat" component={require('../pages/StandaloneChat')}/>
+                    <Route path="*" component={require('../pages/NotFound')}/>
+                </Switch>}
             </CurrentRouter>
         </PageWrapper>)
     }

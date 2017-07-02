@@ -1,0 +1,37 @@
+@type integer("u8")
+def_native("u8");
+@type integer("u64")
+def_native("u64");
+@type binary("utf8")
+def_native("sized_string") {
+    argument("size", stage: "read") => integer("usize");
+};
+def("u_string") => container(virtual: "true") {
+    virtual_field("size", value: "string/@size") => u8;
+    field("string") => sized_string(size: "../size");
+};
+
+def("file_event") => container {
+    field("path") => ::u_string;
+    field("size") => ::u64;
+    virtual_field("tag", value: "event_type/@tag") => ::u8;
+    field("event_type") => union("event_type", tag: "../tag") {
+        variant("list", match: "0") => container {};
+        variant("created", match: "1") => container {};
+        variant("updated", match: "2") => container {};
+        variant("removed", match: "3") => container {};
+    };
+};
+
+def("handshake") => container {
+    field("handshake_id") => ::u64;
+};
+
+@export "packet"
+def("packet") => container(virtual: "true") {
+    virtual_field("tag", value: "data/@tag") => ::u8;
+    field("data") => union("data", tag: "../tag") {
+        variant("handshake", match: "0") => ::handshake;
+        variant("file_event", match: "1") => ::file_event;
+    };
+};
