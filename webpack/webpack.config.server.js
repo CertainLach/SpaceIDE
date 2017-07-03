@@ -15,13 +15,17 @@ server = new WebpackDevServer(webpack(mkConfig({
     lazy: false,
     compress:true,
     contentBase: path.join(__dirname, '../../src/'),
+    // Need historyApiFallback to be able to refresh on dynamic route
     historyApiFallback: {
         disableDotRule: true
-    }, // Need historyApiFallback to be able to refresh on dynamic route
+    }, 
     disableHostCheck: true,
     stats: {
-        colors: true
-    } // Pretty colors in console
- });server.listen(3001, '0.0.0.0');
+        // Pretty colors in console
+        colors: true,
+        errorDetails: true
+    }
+ });
+ server.listen(3001, '0.0.0.0');
 
 

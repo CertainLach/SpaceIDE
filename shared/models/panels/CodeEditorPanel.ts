@@ -3,8 +3,10 @@ import File from '../File';
 
 export default class CodeEditorPanel extends Panel{
     file: File;
-    constructor(file){
+    websocket: string;
+    constructor(file,websocket){
         super('codeEditor');
         this.file=file;
+        this.websocket=websocket;
     }
 }

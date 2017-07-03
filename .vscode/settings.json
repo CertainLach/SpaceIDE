@@ -1,3 +1,7 @@
 {
-  "files.exclude": {}
+  "files.exclude": {
+    "./tsconfig.json": "explorerExcludedFiles",
+    "./postcss.config.js": "explorerExcludedFiles",
+    "backend": "explorerExcludedFiles"
+  }
 }

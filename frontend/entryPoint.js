@@ -17,8 +17,8 @@ render(Root);
 if (__DEVELOPMENT__ && module.hot) {
     const reload = (reloadStore = false) => () => {
         // TODO: Reload store
-        render(require('../containers/Root').default);
+        render(require('./containers/Root').default);
     };
-    module.hot.accept(['../containers/Root'], reload());
-    module.hot.accept(['../containers/App'], reload(true));
+    module.hot.accept(['./containers/Root'], reload());
+    module.hot.accept(['./containers/App'], reload(true));
 }

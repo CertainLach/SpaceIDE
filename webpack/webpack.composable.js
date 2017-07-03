@@ -41,8 +41,9 @@ function mkConfig(env = {}){
         }),
         {
             loader: 'awesome-typescript-loader',
-            query: {
-                configFileName: path.join(__dirname, './toolConfig/tsconfig.json')
+            options: {
+                configFileName: path.join(__dirname, './toolConfig/tsconfig.json'),
+                entryFileIsJs: true
             }
         }
     ]);
@@ -66,8 +67,8 @@ function mkConfig(env = {}){
         devtool: 'source-map',
         entry: {
             app: removeEmpty([
-                ifBrowser(path.join(__dirname, '../frontend/entryPoint.js')),
-                ifNode(path.join(__dirname, '../backend/entryPoint.js')),
+                ifBrowser(path.join(__dirname, '../frontend/entryPoint')),
+                ifNode(path.join(__dirname, '../backend/entryPoint')),
             ]),
             vendor: removeEmpty([
                 'mobx',
@@ -265,7 +266,6 @@ function mkConfig(env = {}){
             }))
         ]),
     };
-    console.log(config);
     return config;
 }
 
