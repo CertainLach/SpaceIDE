@@ -67,8 +67,8 @@ function mkConfig(env = {}){
         devtool: 'source-map',
         entry: {
             app: removeEmpty([
-                ifBrowser(path.join(__dirname, '../frontend/entryPoint')),
-                ifNode(path.join(__dirname, '../backend/entryPoint')),
+                ifBrowser(__dirname+'/../frontend/entryPoint'),
+                ifNode(__dirname+'/../backend/entryPoint'),
             ]),
             vendor: removeEmpty([
                 'mobx',
