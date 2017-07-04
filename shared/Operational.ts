@@ -19,7 +19,7 @@ interface Operation {
  * Instantiates a new NoOp operation object.
  *  @class An operation that does nothing.
  */
-class NoOp implements Operation {
+export class NoOp implements Operation {
     requiresCID = false;
 
     toString() {
@@ -57,7 +57,7 @@ class NoOp implements Operation {
  *  @param position The offset at which the text is to be inserted.
  *  @param text The SegmentBuffer to insert.
  */
-class Insert implements Operation {
+export class Insert implements Operation {
     requiresCID = true;
     text: SegmentBuffer;
     position: number;
@@ -173,7 +173,7 @@ class Insert implements Operation {
  *  @param what The data to be removed. This can be either a numeric value
  *  or a SegmentBuffer object.
  */
-class Delete implements Operation {
+export class Delete implements Operation {
     requiresCID = false;
     position: number;
     recon: Recon;
@@ -456,7 +456,7 @@ class Delete implements Operation {
  *  @param {Operation} first
  *  @param {Operation} second
  */
-class Split implements Operation {
+export class Split implements Operation {
     requiresCID = true;
     first: Operation;
     second: Operation;
@@ -525,7 +525,7 @@ class Split implements Operation {
  *  @param {Recon} [recon] Pre-initialize the Recon object with data from
  *  another object.
  */
-class Recon {
+export class Recon {
     segments: Array<ReconSegment>;
 
     constructor(recon?: Recon) {
@@ -569,7 +569,7 @@ class Recon {
  *  @param {number} offset
  *  @param {SegmentBuffer} buffer
  */
-class ReconSegment {
+export class ReconSegment {
     buffer: SegmentBuffer;
     offset: number;
 
@@ -590,7 +590,7 @@ class ReconSegment {
  *  @param {Vector} vector The time at which the request was issued
  *  @param {Operation} operation
  */
-class DoRequest {
+export class DoRequest {
     user: number;
     vector: Vector;
     operation: Operation;
@@ -697,7 +697,7 @@ class DoRequest {
  *  @param {number} user
  *  @param {Vector} vector The time at which the request was issued.
  */
-class UndoRequest {
+export class UndoRequest {
     user: number;
     vector: Vector;
 
@@ -751,7 +751,7 @@ class UndoRequest {
  *  @param {number} user
  *  @param {Vector} vector The time at which the request was issued.
  */
-class RedoRequest {
+export class RedoRequest {
     user: number;
     vector: Vector;
 
@@ -806,7 +806,7 @@ class RedoRequest {
  * a Vector object, a generic Object with numeric properties, or a string of
  * the form "1:2;3:4;5:6".
  */
-class Vector {
+export class Vector {
     static user_regex = /\d+/;
     static timestring_regex = /(\d+):(\d+)/g;
 
@@ -959,7 +959,7 @@ class Vector {
  *  @param {SegmentBuffer} [buffer] Pre-initialize the buffer
  *  @param {Vector} [vector] Set the initial state vector
  */
-class State {
+export class State {
     buffer: SegmentBuffer;
     vector: Vector;
     request_queue: Array<Request>;
@@ -1314,7 +1314,7 @@ class State {
  *  @param text Text
  *  @class Stores a chunk of text together with the user it was written by.
  */
-class Segment {
+export class Segment {
     user: number;
     text: string;
 
@@ -1352,7 +1352,7 @@ class Segment {
  * @class Holds multiple Segments and provides methods for modifying them at
  * a character level.
  */
-class SegmentBuffer {
+export class SegmentBuffer {
     segments: Array<Segment>;
 
     constructor(segments?: Array<Segment>) {

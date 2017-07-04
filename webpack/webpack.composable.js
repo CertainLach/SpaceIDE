@@ -63,7 +63,7 @@ function mkConfig(env = {}){
             __filename: false,
         },
         externals: isBrowser ? [] : [nodeExternals({
-            whitelist: [/^@meteor-it/,'potato.socket',/webpack/]
+            whitelist: [/webpack/]
         })],
         devtool: 'source-map',
         entry: {
@@ -185,7 +185,7 @@ function mkConfig(env = {}){
                 // Protocol
                 {
                     test: /\.(pds)$/,
-                    loader: [...tsLoadingPipeline,'./webpack/protodefLoader']
+                    loader: ['./webpack/customLoaders/protodefLoader']
                 }
             ],
         },

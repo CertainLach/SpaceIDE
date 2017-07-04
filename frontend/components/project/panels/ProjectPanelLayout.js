@@ -83,7 +83,7 @@ class PanelOverlay extends Component {
 @observer
 class EditorPanel extends Component {
     render() {
-        return <div className={panel + ' ' + editPane}>
+        return <div className={panel+' '+editPane} style={this.props.style}>
             <PanelTop model={this.props.model}/>
             <PanelOverlay model={this.props.model}/>
             <ComponableEditorPanel model={this.props.model} topModel={this.props.topModel}/>
@@ -171,6 +171,7 @@ export class Panel extends Component {
             throw new Error('Size is not defined in model!');
         }
         let secondarySize = 100 - primarySize;
+        console.log(vertical,primarySize);
         let primaryStyle={[vertical ? 'height' : 'width']: `calc(${primarySize}% - ${HANDLE_SIZE / 2}px)`};
         let secondaryStyle={[vertical ? 'height' : 'width']: `calc(${secondarySize}% - ${HANDLE_SIZE / 2}px)`};
         let primaryElement = <Panel
@@ -192,7 +193,9 @@ export class Panel extends Component {
     }
 
     renderPanel(model, topModel) {
-        return <EditorPanel model={model} topModel={topModel}/>;
+        return <div style={this.props.style}> 
+            <EditorPanel model={model} topModel={topModel}/>
+        </div>;
     }
 
     render() {

@@ -2,6 +2,8 @@
 def_native("u8");
 @type integer("u64")
 def_native("u64");
+@type integer("u16")
+def_native("u16");
 @type binary("utf8")
 def_native("sized_string") {
     argument("size", stage: "read") => integer("usize");
@@ -15,32 +17,32 @@ def("u_string") => container(virtual: "true") {
 def("packet") => container(virtual: "true") {
     virtual_field("tag", value: "data/@tag") => ::u8;
     field("data") => union("data", tag: "../tag") {
-        variant("request_uid", match: "8") => container {
-            field("session_id") => ::u64;
+        variant("request_uid", match: "0") => container {
+            field("session_id") => ::u16;
         };
-        variant("assign_uid", match: "0") => container {
-            field("uid") => ::u64;
+        variant("assign_uid", match: "1") => container {
+            field("uid") => ::u16;
         };
 
-        variant("sync", match: "9") => container {};
-        variant("sync_done", match: "1") => container {};
+        variant("sync", match: "2") => container {};
+        variant("sync_done", match: "3") => container {};
 
-        variant("insert", match: "2") => container {
-            field("issuer_uid") => ::u64;
-            filed("vector_values") => ::u_string;
-            field("position") => ::u64;
+        variant("insert", match: "4") => container {
+            field("issuer_uid") => ::u16;
+            field("vector_values") => ::u_string;
+            field("position") => ::u16;
             field("text") => ::u_string;
         };
-        variant("delete", match: "3") => container {
-            field("issuer_uid") => ::u64;
-            filed("vector_values") => ::u_string;
-            field("position") => ::u64;
+        variant("delete", match: "5") => container {
+            field("issuer_uid") => ::u16;
+            field("vector_values") => ::u_string;
+            field("position") => ::u16;
             field("text") => ::u_string;
         };
 
-        variant("undo", match: "4") => container {
-            field("issuer_uid") => ::u64;
-            filed("vector_values") => ::u_string;
+        variant("undo", match: "6") => container {
+            field("issuer_uid") => ::u16;
+            field("vector_values") => ::u_string;
         };
     };
 };

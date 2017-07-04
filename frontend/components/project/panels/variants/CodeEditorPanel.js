@@ -8,7 +8,11 @@ import "brace-mod/ext-custom/gist";
 import "brace-mod/ext/linking";
 import "brace-mod/theme/chaos";
 import copy from 'copy-to-clipboard';
+import {diff_match_patch as DiffMatchPatch} from 'diff_match_patch';
+import {NoOp,Insert,Delete,Split,Recon,ReconSegment,DoRequest,UndoRequest,RedoRequest,Vector,State,Segment,SegmentBuffer} from 'Operational';
+import {packet} from 'protocol/collabText.pds';
 
+console.log(packet);
 
 import React,{Component} from 'react';
 import {
@@ -82,11 +86,45 @@ export default class CodeEditorPanel extends Component{
                 })
             }
         });
+        
+        // Collaboration start
+        let state=new State();
+        let editorSession=this.editor.session;
+        this.editor.on('change', e=>{
+            let offset=editorSession.doc.positionToIndex(e.start,0);
+            switch(e.action){
+                case 'insert':
+                    break;
+                case 'remove':
+                    break;
+                default:
+                    throw new Error('Unknown editor action!');
+            }
+            //console.log(offset);
+        });
+
+        this.serializePacket('request_uid',{
+            session_id:23
+        });
+        this.serializePacket('assign_uid',{
+            uid:23
+        });
+
         // Self update size
         reaction(
             ()=>this.props.topModel.u,
             sizes=>this.editor.resize()
         );
+    }
+    serializePacket(name,data){
+        let packetData={
+            tag:name,
+            data
+        };
+        let size=packet.size_of(packetData);
+        let buffer=Buffer.allocUnsafe(size);
+        packet.serialize(packetData,buffer,0);
+        console.log(buffer);
     }
     render(){
         return <div ref={e=>this.updateRef(e)} className={aceEditorContainer}>
