@@ -1,4 +1,4 @@
-import {Panel} from "./Panel";
+import Panel from "./Panel";
 import File from '../File';
 
 export default class CodeEditorPanel extends Panel{

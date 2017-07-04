@@ -1,5 +1,5 @@
 import {inject, observer} from "mobx-react";
-import {autorun} from 'mobx';
+import {reaction} from 'mobx';
 import ace from "brace-mod";
 import 'brace-mod/mode-custom/prettydoc';
 import 'brace-mod/theme-custom/prettydoc';
@@ -31,7 +31,6 @@ export default class CodeEditorPanel extends Component{
         this.refEditor = item;
     }
     componentDidMount() {
-
         this.editor = ace.edit(this.refEditor);
         this.editor.getSession().setMode(`ace/mode/prettydoc`);
         this.editor.setTheme(`ace/theme/prettydoc`);
@@ -65,7 +64,10 @@ export default class CodeEditorPanel extends Component{
                 })
             }
         });
-        console.log(this.editor);
+        reaction(
+            ()=>this.props.topModel.u,
+            sizes=>this.editor.resize()
+        );
     }
     render(){
         console.log('2123');

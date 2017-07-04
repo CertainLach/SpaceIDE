@@ -1,11 +1,13 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AutoPrefixer = require('autoprefixer');
 const path = require('path');
-const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 const tsconfig = require('./toolsConfig/tsconfig.json');
 const nodeExternals = require('webpack-node-externals');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const {StatsWriterPlugin} = require("webpack-stats-plugin");
+const {CheckerPlugin} = require('awesome-typescript-loader')
 
 function mkConfig(env = {}){
     // Utils to make config development easy
@@ -42,8 +44,7 @@ function mkConfig(env = {}){
         {
             loader: 'awesome-typescript-loader',
             options: {
-                configFileName: path.join(__dirname, './toolConfig/tsconfig.json'),
-                entryFileIsJs: true
+                configFileName: path.join(__dirname, 'toolsConfig/tsconfig.json'),
             }
         }
     ]);
@@ -190,6 +191,7 @@ function mkConfig(env = {}){
         },
 
         plugins: removeEmpty([
+            new CheckerPlugin(),
             // Extract common chunks into vendor
             ifBrowser(new webpack.optimize.CommonsChunkPlugin({
                 name: 'commons',

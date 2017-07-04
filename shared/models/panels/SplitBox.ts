@@ -1,9 +1,11 @@
-import {Panel} from "./Panel";
+import Panel from "./Panel";
+import {observable} from 'mobx';
 
 export default class SplitBox {
     vertical: boolean;
-    size: number;
+    @observable size: number;
     nodes: Array<SplitBox|Panel>;
+    @observable u:number=0;
     constructor(vertical,size,nodes){
         this.vertical=vertical;
         this.size=size;

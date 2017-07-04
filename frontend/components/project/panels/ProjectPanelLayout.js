@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import SplitBoxModel from 'models/panels/SplitBox';
+import PanelModel from 'models/panels/Panel';
 
 import autobind from 'autobind-decorator'
 import {
@@ -144,13 +146,16 @@ class SplitterComponent extends Component {
             y: y - this.state.y
         };
         this.setState({x, y});
-        if (this.props.model.type === 'vsplitbox') {
-            this.props.model.size += offset.y / 3;
-        } else if (this.props.model.type === 'hsplitbox') {
-            this.props.model.size += offset.x / 3;
+        if (this.props.model instanceof SplitBoxModel) {
+            if(this.props.model.vertical)
+                this.props.model.size += offset.y / 3;
+            else 
+                this.props.model.size += offset.x / 3;
         } else{
             throw new Error('Unknown split panel type!');
         }
+        this.props.topModel.u++;
+        // Min-Max
         if (this.props.model.size < 10) this.props.model.size = 10;
         if (this.props.model.size > 90) this.props.model.size = 90;
     }
@@ -168,7 +173,7 @@ class SplitterComponent extends Component {
 
     render() {
         return <div
-            className={handleBar + ' ' + (this.props.model.type === 'vsplitbox' ? horizontal : '')}
+            className={handleBar + ' ' + (this.props.model.vertical ? horizontal : '')}
             onMouseDown={(e) => this.handleDragStart.bind(this)(e)}
         >
             <span className={drag}/>
@@ -212,13 +217,11 @@ export class Panel extends Component {
     render() {
         let model = this.props.model;
         let topModel = this.props.topModel;
-        switch (model.type) {
-            case 'vsplitbox':
-            case 'hsplitbox':
-                return this.renderSplitbox(model, model.type === 'vsplitbox', topModel);
-            case 'panel':
-                return this.renderPanel(model, topModel);
-        }
+        if(model instanceof SplitBoxModel)
+            return this.renderSplitbox(model, model.vertical, topModel);
+        if(model instanceof PanelModel)
+            return this.renderPanel(model,topModel);
+        throw new Error('Wrong model!');
     }
 }
 
