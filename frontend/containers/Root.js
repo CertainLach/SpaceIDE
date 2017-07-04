@@ -11,7 +11,13 @@ export default class Root extends Component {
             <Provider {...this.props.stores}>
                 <div>
                     <App {...this.props}/>
-                    {__DEVELOPMENT__?<DevTools/>:null}
+                    {__DEVELOPMENT__?<DevTools
+                        highlightTimeout={3000}
+                        position={{ 
+                            top: 0, 
+                            right: 200 
+                        }}
+                    />:null}
                     <Header/>
                 </div>
             </Provider>

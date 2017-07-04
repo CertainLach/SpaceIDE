@@ -5,6 +5,15 @@ SpaceIDE
 A rewrite of the awesome chaoscollective's Space Editor
 > Source is messy, will eat your cat!
 
+How to run?
+-----------
+Currently this IDE is unter development, so things will don't work correctly
+To run dev server execute this commands:
+> Clone repo
+> Install latest nightly of node.js (Use nvs)
+> Install deps (npm install)
+> Run (node webpack/webpack.config.server.js)
+
 Libraries/Platforms used:
 -------------------------
  - Node.JS
@@ -23,6 +32,9 @@ Roadmap:
         - [X] Synchronize with mobx (model)
      - [ ] Add panels
         - [X] Code editor panel (Based on ace.js)
+            - [X] Fix resizing (Use global state)
+        - [ ] Alternative code editor panel?
+            - Because monaco editor is very good
         - [ ] Preview panel 
             - [ ] Finish u-preview
         - [ ] Terminal panel
@@ -54,8 +66,6 @@ Roadmap:
      - [X] Notifications
         - [X] Notification log
             - [X] Toggle button
-    
-    
  - [ ] Finish collaboration on backend 
  - [X] Create Potato.Socket component for React
  - [X] Fix mobx-dev-tool (Two last buttons)
@@ -74,4 +84,4 @@ Roadmap:
  - [ ] Move to typescript
     - Later?
  - [ ] Backend
- - [ ] Fix paths
+ - [X] Fix paths
