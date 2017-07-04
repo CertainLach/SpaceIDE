@@ -72,41 +72,21 @@ class PanelTop extends Component{
 
 @inject('bottom')
 @observer
+class PanelOverlay extends Component {
+    render(){
+        // TODO: Handle selection and clicks
+        let shouldBeOverlayed = this.props.bottom.fileBrowserOpened;
+        return <div className={panelOverlay + (!shouldBeOverlayed? (' ' + hidden) : '')}/>
+    }
+}
+
+@observer
 class EditorPanel extends Component {
     render() {
-        let shouldBeOverlayed = this.props.bottom.fileBrowserOpened;
         return <div className={panel + ' ' + editPane}>
             <PanelTop model={this.props.model}/>
-            <div className={panelOverlay + ((!shouldBeOverlayed) ? (' ' + hidden) : '')}/>
+            <PanelOverlay model={this.props.model}/>
             <ComponableEditorPanel model={this.props.model} topModel={this.props.topModel}/>
-            {/*<Ace {...{*/}
-                {/*className: aceEditorContainer,*/}
-                {/*name: 'brace-editor',*/}
-                {/*focus: false,*/}
-                {/*mode: 'prettydoc',*/}
-                {/*theme: 'prettydoc',*/}
-                {/*value: 'tasdasd',*/}
-                {/*fontSize: 12,*/}
-                {/*showGutter: true,*/}
-                {/*onChange: null,*/}
-                {/*onPaste: null,*/}
-                {/*onLoad: null,*/}
-                {/*onScroll: null,*/}
-                {/*minLines: null,*/}
-                {/*maxLines: null,*/}
-                {/*readOnly: false,*/}
-                {/*highlightActiveLine: false,*/}
-                {/*showPrintMargin: true,*/}
-                {/*tabSize: 4,*/}
-                {/*cursorStart: 1,*/}
-                {/*editorProps: {},*/}
-                {/*style: {},*/}
-                {/*scrollMargin: [0, 0, 0, 0],*/}
-                {/*setOptions: {},*/}
-                {/*wrapEnabled: true,*/}
-                {/*enableBasicAutocompletion: false,*/}
-                {/*enableLiveAutocompletion: false,*/}
-            {/*}}/>*/}
         </div>
     }
 }
@@ -154,6 +134,7 @@ class SplitterComponent extends Component {
         } else{
             throw new Error('Unknown split panel type!');
         }
+        // Update every panel size
         this.props.topModel.u++;
         // Min-Max
         if (this.props.model.size < 10) this.props.model.size = 10;

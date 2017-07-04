@@ -37,7 +37,24 @@ export default class CodeEditorPanel extends Component{
         this.editor.setOption('enableFreeSpacePreviews', true);
         this.editor.setOption('enableLinking', true);
         this.editor.setOption('enableGistSharing', true);
-
+        this.editor.getSession().setFoldStyle('markbeginend');
+        // On link hover
+        this.editor.on("linkHover", (data) => {
+            let el = this.editor.container;
+            if (data && data.token && data.token.type === "link")
+                el.style.cursor = 'pointer';
+            else
+                el.style.cursor = 'text';
+        });
+        // On link click
+        this.editor.on("linkClick", (data) => {
+            let el = this.editor.container;
+            if (data && data.token && data.token.type === "link") {
+                el.style.cursor = 'text';
+                window.open(data.token.value, "_blank");
+            }
+        });
+        // Event from ace.js extension
         this.editor.on('gistCreated',e=>{
             if(e.text&&e.cb){
                 fetch('https://api.github.com/gists', {
@@ -49,6 +66,7 @@ export default class CodeEditorPanel extends Component{
                     }),
                     contentType: "application/json"
                 }).then(response => response.json()).then(data => {
+                    // Stop animation
                     e.cb();
                     if(!data.html_url){
                         this.props.notification.addNotification(new Notification('red','Cannot create gist!','GIST'));
@@ -64,14 +82,13 @@ export default class CodeEditorPanel extends Component{
                 })
             }
         });
+        // Self update size
         reaction(
             ()=>this.props.topModel.u,
             sizes=>this.editor.resize()
         );
     }
     render(){
-        console.log('2123');
-        console.log(this.props.model);
         return <div ref={e=>this.updateRef(e)} className={aceEditorContainer}>
 
         </div>
