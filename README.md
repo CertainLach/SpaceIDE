@@ -1,4 +1,6 @@
-![SpaceIDE Logo](./frontend/assets/images/OS_IP_C.png) 
+<p align="center">
+  <img src="./frontend/assets/images/OS_IP_C.png" alt="SpaceIDE Logo"/>
+</p>
 
 SpaceIDE
 --------
