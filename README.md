@@ -2,6 +2,8 @@
 
 SpaceIDE
 --------
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Creeplays/SpaceIDE.svg)](https://greenkeeper.io/)
 A rewrite of the awesome chaoscollective's Space Editor
 > Source is messy, will eat your cat!
 
