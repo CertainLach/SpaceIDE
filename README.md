@@ -7,6 +7,7 @@ SpaceIDE
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Creeplays/SpaceIDE.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/Creeplays/SpaceIDE.svg?branch=master)](https://travis-ci.org/Creeplays/SpaceIDE)
+[![Known Vulnerabilities](https://snyk.io/test/github/creeplays/spaceide/badge.svg)](https://snyk.io/test/github/creeplays/spaceide)
 
 A rewrite of the awesome chaoscollective's Space Editor
 > Source is messy, will eat your cat!
